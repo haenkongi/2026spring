@@ -34,7 +34,7 @@
             flex-direction: column;
             padding: 30px;
             z-index: 1000;
-            overflow-y: auto;
+            overflow-y: auto; /* 내용이 많아지면 스크롤 생성 */
         }
 
         header h1 { font-size: 1.4rem; margin: 0; font-weight: 800; border-left: 4px solid var(--accent); padding-left: 12px; }
@@ -46,15 +46,20 @@
         .value { font-size: 1rem; line-height: 1.5; font-weight: 600; }
         .description { font-size: 0.9rem; background: #f9f9f9; padding: 15px; border-radius: 6px; border: 1px solid #eee; line-height: 1.6; }
 
-        /* 사진 스타일 */
-        #image-box { display: none; margin-bottom: 20px; text-align: center; }
+        /* 사진 스타일: 최하단 배치를 위해 마진 조정 */
+        #image-box { 
+            display: none; 
+            margin-top: 30px; 
+            padding-top: 20px;
+            border-top: 1px double #ddd; 
+            text-align: center; 
+        }
         .fossil-img {
             max-width: 100%;
-            max-height: 350px;
             height: auto;
             border-radius: 4px;
-            border: 1px solid #ddd;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 1px solid #eee;
         }
 
         #map { flex: 1; height: 100%; cursor: default !important; }
@@ -74,11 +79,6 @@
     </div>
 
     <div id="content-view">
-        <div id="image-box">
-            <span class="label">Fossil Photo</span>
-            <img id="v-image" src="" alt="Fossil Photo" class="fossil-img">
-        </div>
-
         <div class="data-box">
             <span class="label">Location</span>
             <div id="v-title" class="value">-</div>
@@ -95,16 +95,21 @@
             <span class="label">Academic Note</span>
             <div id="v-note" class="description">-</div>
         </div>
+
+        <div id="image-box">
+            <span class="label">Fossil Photo</span>
+            <img id="v-image" src="" alt="Fossil Photo" class="fossil-img">
+        </div>
     </div>
 </aside>
 
 <main id="map"></main>
 
 <script>
-    // 1. 지도 초기화 (고정형)
+    // 1. 지도 초기화 (광역 고정형)
     const map = L.map('map', {
-        center: [37.15, 128.75],
-        zoom: 10,
+        center: [37.2, 128.6], 
+        zoom: 10, 
         zoomControl: false,
         dragging: false,
         scrollWheelZoom: false,
@@ -121,13 +126,9 @@
 
     // 2. data.json 파일 불러오기
     fetch('data.json')
-        .then(res => {
-            if (!res.ok) throw new Error("JSON 파일을 찾을 수 없습니다.");
-            return res.json();
-        })
+        .then(res => res.json())
         .then(data => {
             data.forEach(item => {
-                // 마커 생성
                 const marker = L.circleMarker([item.lat, item.lng], {
                     radius: 8,
                     fillColor: "#c0392b",
@@ -138,42 +139,31 @@
                     interactive: true
                 }).addTo(map);
 
-                // 클릭 이벤트
                 marker.on('click', () => {
                     welcome.style.display = 'none';
                     contentView.style.display = 'block';
 
-                    // 텍스트 업데이트
-                    document.getElementById('v-title').innerText = item.title || "정보 없음";
+                    document.getElementById('v-title').innerText = item.title || "-";
                     document.getElementById('v-stratum').innerText = item.stratum || "-";
                     document.getElementById('v-period').innerText = item.period || "-";
                     document.getElementById('v-fossils').innerText = item.fossils || "-";
-                    document.getElementById('v-note').innerText = item.note || "등록된 설명이 없습니다.";
+                    document.getElementById('v-note').innerText = item.note || "-";
 
-                    // 사진 업데이트 로직
+                    // 🔥 사진 로딩 보정 로직
                     if (item.image && item.image.trim() !== "") {
-                        vImage.src = item.image;
+                        // encodeURI를 사용하여 파일명에 포함된 '공백' 문제를 해결합니다.
+                        vImage.src = encodeURI(item.image);
                         imageBox.style.display = 'block';
                     } else {
                         imageBox.style.display = 'none';
                     }
                 });
 
-                // 호버 효과
-                marker.on('mouseover', function() {
-                    this.setRadius(10);
-                    this.setStyle({ fillColor: "#e74c3c" });
-                });
-                marker.on('mouseout', function() {
-                    this.setRadius(8);
-                    this.setStyle({ fillColor: "#c0392b" });
-                });
+                marker.on('mouseover', function() { this.setRadius(10); this.setStyle({ fillColor: "#e74c3c" }); });
+                marker.on('mouseout', function() { this.setRadius(8); this.setStyle({ fillColor: "#c0392b" }); });
             });
         })
-        .catch(err => {
-            console.error(err);
-            alert("데이터를 불러오는 데 실패했습니다. data.json 파일을 확인해 주세요.");
-        });
+        .catch(err => console.error("데이터 로딩 실패:", err));
 </script>
 
 </body>
