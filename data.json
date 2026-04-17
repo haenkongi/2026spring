@@ -1,1 +1,32 @@
-
+[
+    {
+        "title":"Yeongwol, Yeongheung ",
+        "lat":37.183,
+        "lng":128.461,
+        "stratum":"Yeongheung Formation",
+        "period":"Ordovician",
+        "fossils":"Trilobite",
+        "note":"...",
+        "image":"images\/KakaoTalk_Photo_2026-04-16-19-57-25 001.jpeg"
+    },
+    {
+        "title":"Taebaek, Jigunsan ",
+        "lat":37.105,
+        "lng":129.007,
+        "stratum":"Jigunsan Formation",
+        "period":"Ordovician",
+        "fossils":"Brachiopod",
+        "note":"...",
+        "image":null
+    },
+    {
+        "title":"Mitan, Pyeonchang",
+        "lat":37.203,
+        "lng":128.29,
+        "stratum":"Yeongheung Formation",
+        "period":"Ordovician",
+        "fossils":null,
+        "note":null,
+        "image":null
+    }
+]
