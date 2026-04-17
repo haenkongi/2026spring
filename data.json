@@ -1,0 +1,20 @@
+[
+    {
+        "title":"Yeongwol, Yeongheung ",
+        "lat":37.183,
+        "lng":128.461,
+        "stratum":"Yeongheung Formation",
+        "period":"Ordovician",
+        "fossils":"Trilobite",
+        "note":"..."
+    },
+    {
+        "title":"Taebaek, Jigunsan ",
+        "lat":37.105,
+        "lng":129.007,
+        "stratum":"Jigunsan Formation",
+        "period":"Ordovician",
+        "fossils":"Brachiopod",
+        "note":"..."
+    }
+]
