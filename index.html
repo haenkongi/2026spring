@@ -12,7 +12,7 @@
         :root {
             --bg-color: #fcfcfc;
             --panel-bg: #ffffff;
-            --accent: #c0392b; /* 고생대 지층 느낌의 붉은색 마커 */
+            --accent: #c0392b;
             --text-dark: #2c3e50;
         }
 
@@ -26,7 +26,6 @@
             overflow: hidden;
         }
 
-        /* 왼쪽 정보 패널 (스크롤 가능하게 수정) */
         #side-panel {
             width: 400px;
             background: var(--panel-bg);
@@ -35,42 +34,30 @@
             flex-direction: column;
             padding: 30px;
             z-index: 1000;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.02);
-            overflow-y: auto; /* 내용이 많으면 스크롤 */
+            overflow-y: auto;
         }
 
         header h1 { font-size: 1.4rem; margin: 0; font-weight: 800; border-left: 4px solid var(--accent); padding-left: 12px; }
         header p { font-size: 0.85rem; color: #7f8c8d; margin: 8px 0 30px 0; }
 
-        /* 데이터 표시 영역 */
         #content-view { display: none; }
         .data-box { margin-bottom: 20px; }
         .label { font-size: 0.7rem; font-weight: 800; color: var(--accent); text-transform: uppercase; display: block; margin-bottom: 5px; }
-        .value { font-size: 1rem; line-height: 1.5; font-weight: 500; }
+        .value { font-size: 1rem; line-height: 1.5; font-weight: 600; }
         .description { font-size: 0.9rem; background: #f9f9f9; padding: 15px; border-radius: 6px; border: 1px solid #eee; line-height: 1.6; }
 
-        /* 🔥 사진 전용 스타일 추가 */
-        .fossil-img-container {
-            margin-top: 10px;
-            text-align: center;
-            display: none; /* 일단 숨김 */
-        }
+        /* 사진 스타일 */
+        #image-box { display: none; margin-bottom: 20px; text-align: center; }
         .fossil-img {
-            max-width: 100%; /* 패널 폭에 맞춤 */
-            max-height: 300px; /* 너무 세로로 긴 사진 방지 */
+            max-width: 100%;
+            max-height: 350px;
             height: auto;
-            border: 1px solid #eee;
             border-radius: 4px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
-        /* 오른쪽 지도 영역 (그림처럼 고정) */
-        #map {
-            flex: 1;
-            height: 100%;
-            cursor: default !important; /* 클릭 외 손바닥 모양 제거 */
-        }
-
+        #map { flex: 1; height: 100%; cursor: default !important; }
         .welcome-msg { text-align: center; color: #bdc3c7; margin-top: 100px; font-size: 0.9rem; }
     </style>
 </head>
@@ -83,18 +70,18 @@
     </header>
 
     <div id="welcome" class="welcome-msg">
-        <p>지도의 포인트를 클릭하면<br>상세 정보와 화석 사진이 표시됩니다.</p>
+        <p>지도의 포인트를 클릭하면<br>상세 정보와 사진이 표시됩니다.</p>
     </div>
 
     <div id="content-view">
-        <div id="image-box" class="data-box fossil-img-container">
+        <div id="image-box">
             <span class="label">Fossil Photo</span>
-            <img id="v-image" src="" alt="Fossil Image" class="fossil-img">
+            <img id="v-image" src="" alt="Fossil Photo" class="fossil-img">
         </div>
 
         <div class="data-box">
             <span class="label">Location</span>
-            <div id="v-title" class="value" style="font-size: 1.2rem; font-weight: 700;">-</div>
+            <div id="v-title" class="value">-</div>
         </div>
         <div class="data-box">
             <span class="label">Stratum / Period</span>
@@ -114,52 +101,79 @@
 <main id="map"></main>
 
 <script>
-    // 1. 지도 초기화
-    const map = L.map('map', { center: [37.15, 128.75], zoom: 11, zoomControl: false, dragging: false, touchZoom: false, scrollWheelZoom: false, doubleClickZoom: false, boxZoom: false, keyboard: false, attributionControl: false });
+    // 1. 지도 초기화 (고정형)
+    const map = L.map('map', {
+        center: [37.15, 128.75],
+        zoom: 11,
+        zoomControl: false,
+        dragging: false,
+        scrollWheelZoom: false,
+        doubleClickZoom: false,
+        attributionControl: false
+    });
+
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png').addTo(map);
 
     const welcome = document.getElementById('welcome');
-    const content = document.getElementById('content-view');
-    
-    // 🔥 사진 관련 DOM 요소 가져오기
+    const contentView = document.getElementById('content-view');
     const imageBox = document.getElementById('image-box');
     const vImage = document.getElementById('v-image');
 
     // 2. data.json 파일 불러오기
     fetch('data.json')
-        .then(response => response.json())
-        .then(jsonData => {
-            jsonData.forEach(item => {
-                const marker = L.circleMarker([item.lat, item.lng], { radius: 7, fillColor: "#c0392b", color: "#fff", weight: 2, opacity: 1, fillOpacity: 0.9, interactive: true }).addTo(map);
+        .then(res => {
+            if (!res.ok) throw new Error("JSON 파일을 찾을 수 없습니다.");
+            return res.json();
+        })
+        .then(data => {
+            data.forEach(item => {
+                // 마커 생성
+                const marker = L.circleMarker([item.lat, item.lng], {
+                    radius: 8,
+                    fillColor: "#c0392b",
+                    color: "#fff",
+                    weight: 2,
+                    opacity: 1,
+                    fillOpacity: 0.9,
+                    interactive: true
+                }).addTo(map);
 
+                // 클릭 이벤트
                 marker.on('click', () => {
                     welcome.style.display = 'none';
-                    content.style.display = 'block';
+                    contentView.style.display = 'block';
 
-                    document.getElementById('v-title').innerText = item.title;
-                    document.getElementById('v-stratum').innerText = item.stratum;
-                    document.getElementById('v-period').innerText = item.period;
-                    document.getElementById('v-fossils').innerText = item.fossils;
-                    document.getElementById('v-note').innerText = item.note;
-                    
-                    // 🔥 사진 표시 로직 추가
-                    if (item.image) {
-                        // 엑셀에 경로가 있는 경우
-                        vImage.src = item.image; // 이미지 주소 설정
-                        vImage.alt = item.title + " 화석 사진"; // 대체 텍스트 설정
-                        imageBox.style.display = 'block'; // 사진 상자 보이기
+                    // 텍스트 업데이트
+                    document.getElementById('v-title').innerText = item.title || "정보 없음";
+                    document.getElementById('v-stratum').innerText = item.stratum || "-";
+                    document.getElementById('v-period').innerText = item.period || "-";
+                    document.getElementById('v-fossils').innerText = item.fossils || "-";
+                    document.getElementById('v-note').innerText = item.note || "등록된 설명이 없습니다.";
+
+                    // 사진 업데이트 로직
+                    if (item.image && item.image.trim() !== "") {
+                        vImage.src = item.image;
+                        imageBox.style.display = 'block';
                     } else {
-                        // 경로가 없는 경우 (빈칸)
-                        vImage.src = ""; // 이미지 비우기
-                        imageBox.style.display = 'none'; // 사진 상자 숨기기
+                        imageBox.style.display = 'none';
                     }
                 });
 
-                marker.on('mouseover', function(e) { this.setRadius(9); this.setStyle({ fillColor: "#e74c3c" }); });
-                marker.on('mouseout', function(e) { this.setRadius(7); this.setStyle({ fillColor: "#c0392b" }); });
+                // 호버 효과
+                marker.on('mouseover', function() {
+                    this.setRadius(10);
+                    this.setStyle({ fillColor: "#e74c3c" });
+                });
+                marker.on('mouseout', function() {
+                    this.setRadius(8);
+                    this.setStyle({ fillColor: "#c0392b" });
+                });
             });
         })
-        .catch(error => console.error('데이터 로딩 에러:', error));
+        .catch(err => {
+            console.error(err);
+            alert("데이터를 불러오는 데 실패했습니다. data.json 파일을 확인해 주세요.");
+        });
 </script>
 
 </body>
