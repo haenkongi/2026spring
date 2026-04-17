@@ -6,7 +6,8 @@
         "stratum":"Yeongheung Formation",
         "period":"Ordovician",
         "fossils":"Trilobite",
-        "note":"..."
+        "note":"...",
+        "image":"images\/KakaoTalk_Photo_2026-04-16-19-57-25 001.jpeg"
     },
     {
         "title":"Taebaek, Jigunsan ",
@@ -15,6 +16,7 @@
         "stratum":"Jigunsan Formation",
         "period":"Ordovician",
         "fossils":"Brachiopod",
-        "note":"..."
+        "note":"...",
+        "image":null
     }
 ]
