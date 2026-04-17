@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한국 고생대 화석 아카이브</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <style>
+        /* 1. 디자인 컨셉: 미니멀 & 아카데믹 */
+        :root {
+            --bg-light: #f8f9fa;
+            --text-main: #2c3e50;
+            --accent: #d35400; /* 화석 마커 강조색 (테라코타) */
+            --border: #dee2e6;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            color: var(--text-main);
+            background-color: var(--bg-light);
+        }
+
+        header {
+            padding: 15px 25px;
+            background: white;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 { font-size: 1.2rem; margin: 0; letter-spacing: -0.5px; }
+        header p { font-size: 0.85rem; margin: 5px 0 0 0; color: #7f8c8d; }
+
+        main {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* 지도 영역 - 불필요한 테두리 제거 */
+        #map {
+            flex: 3;
+            height: 100%;
+            background-color: #f0f0f0;
+        }
+
+        /* 정보 패널 */
+        #info-panel {
+            flex: 1;
+            min-width: 320px;
+            max-width: 400px;
+            background: white;
+            border-left: 1px solid var(--border);
+            padding: 25px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .empty-state {
+            color: #95a5a6;
+            text-align: center;
+            margin-top: 50%;
+            font-size: 0.9rem;
+        }
+
+        .content-active h2 {
+            font-size: 1.4rem;
+            margin-top: 0;
+            border-bottom: 2px solid var(--text-main);
+            padding-bottom: 10px;
+        }
+
+        .data-row {
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .label {
+            display: block;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 3px;
+        }
+
+        .description {
+            line-height: 1.6;
+            color: #444;
+            background: #fdfdfd;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 4px;
+        }
+
+        /* 지도 위 줌 컨트롤 숨기기 (선택사항) */
+        .leaflet-control-zoom { display: none; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div>
+        <h1>PALEOZOIC FOSSIL ARCHIVE</h1>
+        <p>한국 고생대 화석 오픈소스 아카이빙 프로젝트</p>
+    </div>
+</header>
+
+<main>
+    <div id="map"></div>
+    
+    <div id="info-panel">
+        <div id="placeholder" class="empty-state">
+            <p>지도의 지점을 클릭하여<br>화석 데이터를 확인하세요.</p>
+        </div>
+        
+        <div id="detail-view" style="display: none;" class="content-active">
+            <h2 id="view-title">지역명</h2>
+            
+            <div class="data-row">
+                <span class="label">Stratum (지층)</span>
+                <span id="view-stratum">정보 없음</span>
+            </div>
+            
+            <div class="data-row">
+                <span class="label">Period (시대)</span>
+                <span id="view-period">정보 없음</span>
+            </div>
+            
+            <div class="data-row">
+                <span class="label">Major Fossils (주요 화석)</span>
+                <span id="view-fossils">정보 없음</span>
+            </div>
+
+            <div class="data-row">
+                <span class="label">Note (설명)</span>
+                <div id="view-note" class="description"></div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    // 1. 지도 설정: 영월-태백 지역을 중심으로 초기화 (좌표: 37.18, 128.75)
+    const map = L.map('map', {
+        center: [37.18, 128.75],
+        zoom: 10,
+        zoomControl: false // 줌 버튼 제거로 더 깔끔하게
+    });
+
+    // 2. 단순화된 배경 지도 (CartoDB Positron)
+    // 건물명, 도로 정보가 거의 없는 미니멀 스타일입니다.
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; OpenStreetMap &copy; CARTO'
+    }).addTo(map);
+
+    // 3. 데이터 리스트 (나중에 이 부분만 수정하세요)
+    const fossilData = [
+        {
+            title: "영월군 영흥층",
+            lat: 37.183,
+            lng: 128.461,
+            stratum: "영흥층 (Yeongheung Fm.)",
+            period: "오르도비스기 (Ordovician)",
+            fossils: "삼엽충, 완족류, 두족류",
+            note: "주로 석회암과 돌로마이트로 구성되며, 천해 환경에서의 퇴적 작용을 보여줍니다."
+        },
+        {
+            title: "태백시 직운산층",
+            lat: 37.105,
+            lng: 129.007,
+            period: "오르도비스기 (Ordovician)",
+            stratum: "직운산층 (Jigunsan Fm.)",
+            fossils: "필석(Graptolite), 연체동물, 삼엽충",
+            note: "검은색 셰일층에서 산출되는 풍부한 필석 화석이 특징입니다."
+        }
+    ];
+
+    // 4. 지도에 데이터 표시 로직
+    const placeholder = document.getElementById('placeholder');
+    const detailView = document.getElementById('detail-view');
+
+    fossilData.forEach(item => {
+        // 마커 생성 (강조색 사용)
+        const marker = L.circleMarker([item.lat, item.lng], {
+            radius: 8,
+            fillColor: "#d35400",
+            color: "#fff",
+            weight: 2,
+            opacity: 1,
+            fillOpacity: 0.8
+        }).addTo(map);
+
+        // 마커 클릭 시 우측 패널 업데이트
+        marker.on('click', () => {
+            placeholder.style.display = 'none';
+            detailView.style.display = 'block';
+
+            document.getElementById('view-title').innerText = item.title;
+            document.getElementById('view-stratum').innerText = item.stratum;
+            document.getElementById('view-period').innerText = item.period;
+            document.getElementById('view-fossils').innerText = item.fossils;
+            document.getElementById('view-note').innerText = item.note;
+            
+            // 클릭한 지점으로 부드럽게 이동
+            map.panTo([item.lat, item.lng]);
+        });
+    });
+</script>
+
+</body>
+</html>
