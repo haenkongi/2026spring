@@ -7,7 +7,9 @@
         "period":"Ordovician",
         "fossils":"Trilobite",
         "note":"...",
-        "image":null
+        "image":[
+
+        ]
     },
     {
         "title":"Taebaek, Jigunsan ",
@@ -17,7 +19,9 @@
         "period":"Ordovician",
         "fossils":"Brachiopod",
         "note":"...",
-        "image":null
+        "image":[
+
+        ]
     },
     {
         "title":"Mitan, Pyeonchang",
@@ -27,6 +31,30 @@
         "period":"Ordovician",
         "fossils":null,
         "note":null,
-        "image":"images\/071000012.JPG"
+        "image":[
+            {
+                "path":"images\/071000012.JPG",
+                "caption":"Vuggy pore"
+            }
+        ]
+    },
+    {
+        "title":"Sorotgol, Taebaek",
+        "lat":37.084,
+        "lng":128.564,
+        "stratum":"Duwibong Formation",
+        "period":"Ordovician",
+        "fossils":"Stromatoporoid reef complex",
+        "note":null,
+        "image":[
+            {
+                "path":"images\/Hong et al.",
+                "caption":""
+            },
+            {
+                "path":"2018.png",
+                "caption":""
+            }
+        ]
     }
 ]
