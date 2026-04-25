@@ -94,7 +94,15 @@
         "image":[
             {
                 "path":"images\/Lee_et_al_2022_1.png",
-                "caption":"Fig. 4. Slab photographs of the Daegi reefs. a-b) Thromboid-sponge bioherms showing millimeter-scale darker mesoclots (arrows) and the surrounding lighter micritic sediments. These mesoclots are coalesced vertically and laterally. c) Microbial crust bioherm composed predominantly of whitish, platy to arcuate crusts (arrows)."
+                "caption":"Fig. 4. Slab photographs of the Daegi reefs. a-b) Thromboid-sponge bioherms showing millimeter-scale darker mesoclots (arrows) and the surrounding lighter micritic sediments. These mesoclots are coalesced vertically and laterally. c) Microbial crust bioherm composed predominantly of whitish, platy to arcuate crusts (arrows). (Lee et al., 2022)"
+            },
+            {
+                "path":"images\/Lee_et_al_2022_2.png",
+                "caption":"c) Enlargement of a rectangle in Figure 5b showing bifurcation of Epiphyton filaments (white arrow). (Lee et al., 2022)"
+            },
+            {
+                "path":"images\/Lee_et_al_2022_3.png",
+                "caption":"e) Lithistid sponge skeleton (line) composed largely of straight-form spicules. Note the rectangle and its inset showing enlarged desma (red lines and arrow). (Lee et al., 2022)"
             }
         ]
     }
