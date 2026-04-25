@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>태백산분지 고생대 화석 아카이브</title>
+    <title>Taebaeksan Basin Paleozoic Fossil Archive</title>
     
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -40,7 +40,6 @@
         header h1 { font-size: 1.4rem; margin: 0; font-weight: 800; border-left: 4px solid var(--accent); padding-left: 12px; }
         header p { font-size: 0.85rem; color: #7f8c8d; margin: 8px 0 20px 0; }
 
-        /* 필터 스타일 */
         .filter-select {
             width: 100%;
             padding: 10px;
@@ -78,14 +77,15 @@
         .img-caption {
             font-size: 0.85rem;
             color: #7f8c8d;
-            margin-top: 8px;
-            margin-bottom: 20px;
+            margin-top: 10px;
+            margin-bottom: 25px;
             font-style: italic;
             line-height: 1.4;
+            text-align: left;
         }
 
         #map { flex: 1; height: 100%; cursor: default !important; }
-        .welcome-msg { text-align: center; color: #bdc3c7; margin-top: 100px; font-size: 0.9rem; }
+        .welcome-msg { text-align: center; color: #bdc3c7; margin-top: 80px; font-size: 0.9rem; }
     </style>
 </head>
 <body>
@@ -93,43 +93,42 @@
 <aside id="side-panel">
     <header>
         <h1>TAEBAEKSAN BASIN</h1>
-        <p>태백산분지 고생대 화석 데이터베이스</p>
+        <p>Paleozoic Fossil Database</p>
     </header>
 
     <div id="filter-container" style="margin-bottom: 25px;">
         <div class="data-box" style="margin-bottom: 10px;">
-            <span class="label">Formation (지층)</span>
+            <span class="label">Formation</span>
             <select id="f-stratum" class="filter-select">
-                <option value="all">전체 (All)</option>
-                <option value="Yeongheung">영흥층 (Yeongheung)</option>
-                <option value="Jigunsan">직운산층 (Jigunsan)</option>
-                <option value="Duwibong">두위봉층 (Duwibong)</option>
-                <option value="Mungok">문곡층 (Mungok)</option>
+                <option value="all">All Formations</option>
+                <option value="Yeongheung">Yeongheung Formation</option>
+                <option value="Jigunsan">Jigunsan Formation</option>
+                <option value="Duwibong">Duwibong Formation</option>
+                <option value="Mungok">Mungok Formation</option>
             </select>
         </div>
         <div class="data-box" style="margin-bottom: 10px;">
-            <span class="label">Period (시기)</span>
+            <span class="label">Period</span>
             <select id="f-period" class="filter-select">
-                <option value="all">전체 (All)</option>
-                <option value="Ordovician">오르도비스기 (Ordovician)</option>
-                <option value="Cambrian">캄브리아기 (Cambrian)</option>
+                <option value="all">All Periods</option>
+                <option value="Ordovician">Ordovician</option>
+                <option value="Cambrian">Cambrian</option>
             </select>
         </div>
         <div class="data-box">
-            <span class="label">Major Fossil (화석)</span>
+            <span class="label">Fossil Category</span>
             <select id="f-fossil" class="filter-select">
-                <option value="all">전체 (All)</option>
-                <option value="Trilobite">삼엽충 (Trilobite)</option>
-                <option value="Brachiopod">완족류 (Brachiopod)</option>
-                <option value="Cephalopod">두족류 (Cephalopod)</option>
-                <option value="Reef">리프 (Reef)</option>
+                <option value="all">All Categories</option>
+                <option value="Trilobite">Trilobite</option>
+                <option value="Reef">Reef</option>
+                <option value="Conodont">Conodont</option>
             </select>
         </div>
     </div>
 
     <div id="welcome" class="welcome-msg">
         <hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 20px;">
-        <p>지도의 포인트를 클릭하면<br>상세 정보와 사진이 표시됩니다.</p>
+        <p>Click on a map point to view<br>detailed information and photos.</p>
     </div>
 
     <div id="content-view">
@@ -151,19 +150,18 @@
         </div>
         <div id="image-box">
             <span class="label">Fossil Photos & Captions</span>
-            </div>
+        </div>
     </div>
 </aside>
 
 <main id="map"></main>
 
 <script>
-    // 1. 지도 설정
     const map = L.map('map', { 
         center: [37.2, 128.6], 
         zoom: 9, 
         zoomControl: false, 
-        dragging: true, // 필터링 결과 확인을 위해 드래깅은 허용하는 것이 편합니다
+        dragging: true, 
         scrollWheelZoom: true, 
         doubleClickZoom: false, 
         attributionControl: false 
@@ -175,14 +173,12 @@
     const contentView = document.getElementById('content-view');
     const imageBox = document.getElementById('image-box');
     
-    // 필터 엘리먼트 참조
     const selStratum = document.getElementById('f-stratum');
     const selPeriod = document.getElementById('f-period');
     const selFossil = document.getElementById('f-fossil');
 
-    let markersArray = []; // 전체 마커와 데이터를 보관할 배열
+    let markersArray = [];
 
-    // 2. 데이터 불러오기 및 마커 생성
     fetch('data.json')
         .then(res => res.json())
         .then(data => {
@@ -191,7 +187,6 @@
                     radius: 8, fillColor: "#c0392b", color: "#fff", weight: 2, opacity: 1, fillOpacity: 0.9, interactive: true
                 }).addTo(map);
 
-                // 필터링에 사용할 속성을 마커 객체와 함께 저장
                 markersArray.push({
                     marker: marker,
                     stratum: item.stratum || "",
@@ -199,7 +194,6 @@
                     fossils: item.fossils || ""
                 });
 
-                // 마커 클릭 시 정보 표시 (기존 멀티 이미지 로직 포함)
                 marker.on('click', () => {
                     welcome.style.display = 'none';
                     contentView.style.display = 'block';
@@ -210,7 +204,6 @@
                     document.getElementById('v-fossils').innerText = item.fossils || "-";
                     document.getElementById('v-note').innerText = item.note || "-";
 
-                    // 기존 이미지 상자 비우기 및 새로 생성
                     imageBox.innerHTML = '<span class="label">Fossil Photos & Captions</span>'; 
                     
                     if (item.image && Array.isArray(item.image) && item.image.length > 0) {
@@ -219,7 +212,6 @@
                             wrapper.style.marginBottom = '25px';
 
                             const imgElement = document.createElement('img');
-                            // 파일명 공백 처리 및 캐시 방지
                             imgElement.src = encodeURI(imgData.path) + "?v=" + new Date().getTime();
                             imgElement.className = 'fossil-img';
                             
@@ -237,26 +229,22 @@
                     }
                 });
 
-                // 마우스 오버 효과
                 marker.on('mouseover', function() { this.setRadius(10); this.setStyle({ fillColor: "#e74c3c" }); });
                 marker.on('mouseout', function() { this.setRadius(8); this.setStyle({ fillColor: "#c0392b" }); });
             });
         })
-        .catch(err => console.error("데이터 로딩 실패:", err));
+        .catch(err => console.error("Data loading failed:", err));
 
-    // 3. 통합 필터링 함수
     function applyFilters() {
         const valStratum = selStratum.value;
         const valPeriod = selPeriod.value;
         const valFossil = selFossil.value;
 
         markersArray.forEach(obj => {
-            // "전체(all)" 선택 시 통과, 아니면 데이터에 해당 키워드가 있는지 확인
             const matchStrat = (valStratum === 'all') || (obj.stratum.includes(valStratum));
             const matchPeri = (valPeriod === 'all') || (obj.period.includes(valPeriod));
-            const matchFoss = (valFossil === 'all') || (obj.fossils.includes(valFossil));
+            const matchFoss = (valFossil === 'all') || (obj.fossils.toLowerCase().includes(valFossil.toLowerCase()));
 
-            // 세 조건이 모두 맞을 때만 지도에 표시 (AND 연산)
             if (matchStrat && matchPeri && matchFoss) {
                 obj.marker.addTo(map);
             } else {
@@ -264,12 +252,10 @@
             }
         });
 
-        // 필터를 변경하면 현재 열려있는 상세 정보창을 닫음
         welcome.style.display = 'block';
         contentView.style.display = 'none';
     }
 
-    // 드롭다운 값이 바뀔 때마다 필터링 실행
     selStratum.addEventListener('change', applyFilters);
     selPeriod.addEventListener('change', applyFilters);
     selFossil.addEventListener('change', applyFilters);
