@@ -24,17 +24,17 @@
         ]
     },
     {
-        "title":"Mitan, Pyeonchang",
+        "title":"Chagri, Pyeonchang",
         "lat":37.203,
         "lng":128.29,
         "stratum":"Yeongheung Formation",
-        "period":"Ordovician",
-        "fossils":null,
+        "period":"late Ordovician(Sandbian)",
+        "fossils":"Conodont",
         "note":null,
         "image":[
             {
-                "path":"images\/071000012.JPG",
-                "caption":"Vuggy pore"
+                "path":"images\/Lee_et_al_2025.png",
+                "caption":"Fig. 4 Darriwilian and Sandbian conodonts. (a–c) Plectodina sp. cf. P.\nflorida Sweet, 1979; (a) Sc element, lateral view, WC3, JBNU25-25;\n(b) Sb element, lateral view, WC3, JBNU25-26; (c) Sc element, lateral\nview, WC3, JBNU25-29. (d, e) Plectodina onychodonta An and Xu\nin An et al., 1983. (d) Sa element, posterior view, WC3, JBNU25-27;\n(e) M element, lateral view, WC3, JBNU25-28. (f–i) Microcoelodus\nasymmetricus (Branson & Mehl, 1933); (f) symmetrical S element,\nposterolateral view, EC2, JBNU25-01; (g) symmetrical S element,\nposterior view, YS2-13, JBNU25-02; (h) asymmetrical S element,\nposterior view, EC2, JBNU25-05; (i) asymmetrical S element, poste-\nrior view, EC2, JBNU25-06. (j–n) Tasmanognathus sishuiensis Zhang\nin An et al., 1983; (j) Sa element, posterior view, EC2, JBNU25-07;\n(k) Pa element, lateral view, EC2, JBNU25-08; (l) Pa element, lat-\neral view, YS2-13, JBNU25-09; (m) Sc element, lateral view, EC2,\nJBNU25-10; (n) Pb element, lateral view, EC2, JBNU25-12. (o)\nErismodus typus Branson & Mehl, 1933; Pa element, posterior view,\nEC2, JBNU25-13. (p, q) Tasmanognathus careyi Burrett, 1979; (p)\nSa element, posterior view, EC2, JBNU25-16; (q) Sb element, pos-\nterior view, EC2, JBNU25-17. (r) Acontiodus viriosus Cui in An et\nal., 1983; posterior view, EC2, JBNU25-31. (s, t) Panderodus gracilis\n(Branson & Mehl, 1933); (s) P element, inner-lateral view, YS2-13,\nJBNU25-32; (t) P element, inner-lateral view, EC2, JBNU25-33. (u,\nv) Plectodina aculeata (Stauffer, 1935); (u) Pb element, lateral view,\nEC2, JBNU25-21; (v) S element, posterior view, EC2, JBNU25-22.\n(w) Protopanderodus nogamii (Lee, 1975); Sb element, lateral view,\nWC3, JBNU25-35. (x) Erismodus quadridactylus (Stauffer, 1935); S\nelement, lateral view, EC2, JBNU25-24. Scale bars\n=\n100 μm (Park et al., 2025)"
             }
         ]
     },
@@ -43,13 +43,43 @@
         "lat":37.084,
         "lng":128.564,
         "stratum":"Duwibong Formation",
-        "period":"Ordovician",
-        "fossils":"Stromatoporoid reef complex",
+        "period":"late Middle Ordovician",
+        "fossils":"Stromatoporoid(Labechiid) reef complex",
         "note":null,
         "image":[
             {
                 "path":"images\/Hong_et_al_2018.png",
-                "caption":"Fig. 5. A) Thin sections of the columnar to ex- tended bulbous reef frameworks used for con- stituent analysis (Table 1). B) Tracing of the reef frameworks made up of laminar reef elements such as stromatoporoids and bryozoans, enclosed by micritic sediments."
+                "caption":"Fig. 5. A) Thin sections of the columnar to ex- tended bulbous reef frameworks used for con- stituent analysis (Table 1). B) Tracing of the reef frameworks made up of laminar reef elements such as stromatoporoids and bryozoans, enclosed by micritic sediments. (Hong et al., 2018)"
+            }
+        ]
+    },
+    {
+        "title":"Buk-myeon, Yeongwol",
+        "lat":37.152,
+        "lng":128.255,
+        "stratum":"Yeongheung Formation",
+        "period":"late Middle Ordovician",
+        "fossils":"Stromatoporoid(Labechiid) reef complex",
+        "note":null,
+        "image":[
+            {
+                "path":"images\/Hong_et_al_2017.png",
+                "caption":"Fig. 2. A) Outcrop of the uppermost stromatoporoid reef of the studied interval. B) Photograph of a set of thin sections showing domal stromatoporoid reef from the second reef horizon, overlying and overlain by peloidal–intraclastic packstone to grainstone (P\/G). Note light-colored laminar stromatoporoids (arrows) bounded by darker micrite. The sample locations are marked in Fig. 1D. (Hong et al., 2017)"
+            }
+        ]
+    },
+    {
+        "title":"Samokri, Yeongwol",
+        "lat":37.131,
+        "lng":128.3,
+        "stratum":"Yeongheung Formation",
+        "period":"late Ordovician(Sandbian)",
+        "fossils":"Conodont",
+        "note":null,
+        "image":[
+            {
+                "path":"images\/Lee_et_al_2025.png",
+                "caption":"Fig. 4 Darriwilian and Sandbian conodonts. (a–c) Plectodina sp. cf. P.\nflorida Sweet, 1979; (a) Sc element, lateral view, WC3, JBNU25-25;\n(b) Sb element, lateral view, WC3, JBNU25-26; (c) Sc element, lateral\nview, WC3, JBNU25-29. (d, e) Plectodina onychodonta An and Xu\nin An et al., 1983. (d) Sa element, posterior view, WC3, JBNU25-27;\n(e) M element, lateral view, WC3, JBNU25-28. (f–i) Microcoelodus\nasymmetricus (Branson & Mehl, 1933); (f) symmetrical S element,\nposterolateral view, EC2, JBNU25-01; (g) symmetrical S element,\nposterior view, YS2-13, JBNU25-02; (h) asymmetrical S element,\nposterior view, EC2, JBNU25-05; (i) asymmetrical S element, poste-\nrior view, EC2, JBNU25-06. (j–n) Tasmanognathus sishuiensis Zhang\nin An et al., 1983; (j) Sa element, posterior view, EC2, JBNU25-07;\n(k) Pa element, lateral view, EC2, JBNU25-08; (l) Pa element, lat-\neral view, YS2-13, JBNU25-09; (m) Sc element, lateral view, EC2,\nJBNU25-10; (n) Pb element, lateral view, EC2, JBNU25-12. (o)\nErismodus typus Branson & Mehl, 1933; Pa element, posterior view,\nEC2, JBNU25-13. (p, q) Tasmanognathus careyi Burrett, 1979; (p)\nSa element, posterior view, EC2, JBNU25-16; (q) Sb element, pos-\nterior view, EC2, JBNU25-17. (r) Acontiodus viriosus Cui in An et\nal., 1983; posterior view, EC2, JBNU25-31. (s, t) Panderodus gracilis\n(Branson & Mehl, 1933); (s) P element, inner-lateral view, YS2-13,\nJBNU25-32; (t) P element, inner-lateral view, EC2, JBNU25-33. (u,\nv) Plectodina aculeata (Stauffer, 1935); (u) Pb element, lateral view,\nEC2, JBNU25-21; (v) S element, posterior view, EC2, JBNU25-22.\n(w) Protopanderodus nogamii (Lee, 1975); Sb element, lateral view,\nWC3, JBNU25-35. (x) Erismodus quadridactylus (Stauffer, 1935); S\nelement, lateral view, EC2, JBNU25-24. Scale bars\n=\n100 μm (Park et al., 2025)"
             }
         ]
     }
