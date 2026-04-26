@@ -157,6 +157,23 @@
 <main id="map"></main>
 
 <script>
+    // [중요] KIGAM API 키를 여기에 입력하세요
+    const kigamApiKey = '여기에_발급받은_인증키를_넣으세요';
+
+    // 1. 기본 배경 지도 설정
+    const baseMap = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png');
+
+    // 2. KIGAM 지질도 레이어 설정 (WMS)
+    const geologicalMap = L.tileLayer.wms('https://data.kigam.re.kr/mgeo/openapi/wms', {
+        layers: 'mgeo:mgeo_50k', // 1:50,000 정밀 지질도
+        format: 'image/png',
+        transparent: true,
+        version: '1.1.1',
+        key: kigamApiKey,
+        attribution: 'KIGAM'
+    }).setOpacity(0.6); // 지표면이 보이도록 투명도 60% 설정
+
+    // 3. 지도 초기화
     const map = L.map('map', { 
         center: [37.2, 128.6], 
         zoom: 9, 
@@ -164,10 +181,14 @@
         dragging: true, 
         scrollWheelZoom: true, 
         doubleClickZoom: false, 
-        attributionControl: false 
+        attributionControl: false,
+        layers: [baseMap, geologicalMap] // 기본적으로 지질도를 켠 채로 시작
     });
 
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png').addTo(map);
+    // 4. 레이어 컨트롤러 추가 (우측 상단에서 지질도를 껐다 켰다 할 수 있음)
+    const baseLayers = { "General Map": baseMap };
+    const overlayLayers = { "Geological Map (1:50k)": geologicalMap };
+    L.control.layers(baseLayers, overlayLayers, { collapsed: false }).addTo(map);
 
     const welcome = document.getElementById('welcome');
     const contentView = document.getElementById('content-view');
