@@ -1,32 +1,8 @@
 [
     {
-        "title":"Yeongwol, Yeongheung ",
-        "lat":37.183,
-        "lng":128.461,
-        "stratum":"Yeongheung Formation",
-        "period":"Ordovician",
-        "fossils":"Trilobite",
-        "note":"...",
-        "image":[
-
-        ]
-    },
-    {
-        "title":"Taebaek, Jigunsan ",
-        "lat":37.105,
-        "lng":129.007,
-        "stratum":"Jigunsan Formation",
-        "period":"Ordovician",
-        "fossils":"Brachiopod",
-        "note":"...",
-        "image":[
-
-        ]
-    },
-    {
         "title":"Chagri, Pyeonchang",
-        "lat":37.203,
-        "lng":128.29,
+        "lat":"37°20'15.58\"N ",
+        "lng":"128°29'00.23\"E",
         "stratum":"Yeongheung Formation",
         "period":"Late Ordovician(Sandbian)",
         "fossils":"Conodont",
@@ -40,8 +16,8 @@
     },
     {
         "title":"Sorotgol, Taebaek",
-        "lat":37.084,
-        "lng":128.564,
+        "lat":"37°08'42.06\"N ",
+        "lng":"128°56'40.25\"E",
         "stratum":"Duwibong Formation",
         "period":"late Middle Ordovician",
         "fossils":"Stromatoporoid(Labechiid) reef complex",
@@ -55,8 +31,8 @@
     },
     {
         "title":"Buk-myeon, Yeongwol",
-        "lat":37.152,
-        "lng":128.255,
+        "lat":"37°15'20.40\"N ",
+        "lng":"128°25'47.10\"E",
         "stratum":"Yeongheung Formation",
         "period":"late Middle Ordovician",
         "fossils":"Stromatoporoid(Labechiid) reef complex",
@@ -70,8 +46,8 @@
     },
     {
         "title":"Samokri, Yeongwol",
-        "lat":37.131,
-        "lng":128.3,
+        "lat":"37°13'10.15\"N ",
+        "lng":"128°30'01.79\"E",
         "stratum":"Yeongheung Formation",
         "period":"Late Ordovician(Sandbian)",
         "fossils":"Conodont",
@@ -85,8 +61,8 @@
     },
     {
         "title":"Jangseong-dong, Taebaek",
-        "lat":37.04,
-        "lng":129.023,
+        "lat":"37°05'04.95\"N ",
+        "lng":"129°02'30.45\"E",
         "stratum":"Daegi Formation",
         "period":"Middle Cambrian",
         "fossils":"Microbial - sponge reef",
@@ -108,8 +84,8 @@
     },
     {
         "title":"Seokgaejae, Taebaek",
-        "lat":37.044747,
-        "lng":129.082098,
+        "lat":"37°04'47.61\"N ",
+        "lng":"129°08'21.01\"E",
         "stratum":"Dumugol Formation",
         "period":"Early Ordovician",
         "fossils":"Lithistid sponge (Archaeoscyphia) - microbial - calathid (receptaculitid) reef",
@@ -135,11 +111,11 @@
     },
     {
         "title":"Gumunso, Taebaek",
-        "lat":37.052605,
-        "lng":129.023688,
+        "lat":"37°05'25.96\"N ",
+        "lng":"129°02'37.04\"E",
         "stratum":"Dumugol Formation",
         "period":"Early Ordovician",
-        "fossils":"lithistid sponge-microbialite (reef)",
+        "fossils":"Lithistid sponge-microbial reef, Thrombolite",
         "note":null,
         "image":[
             {
@@ -147,15 +123,15 @@
                 "caption":"Detailed photograph of rectangle in Figure 2a showing transverse cut of cone-shaped Archaeoscyphia (Ar; arrows and their sketches). Note the occurrence of many such round-shaped fossils which are mostly lithistid sponges. (Choh et al., 2013)"
             },
             {
-                "path":"images\/Choh_et_al_2013_2",
+                "path":"images\/Choh_et_al_2013_2.png",
                 "caption":"Microbial clots (Mc; arrows) and rare lithistid Archaeoscyphia (Ls) of the Gumunso G3 thrombolitic reef.(Choh et al., 2013)"
             }
         ]
     },
     {
         "title":"Sangdong, Taebaek",
-        "lat":37.0914,
-        "lng":128.522767,
+        "lat":"37°09'13.58\"N ",
+        "lng":"128°52'27.76\"E",
         "stratum":"Dumugol Formation",
         "period":"Early Ordovician",
         "fossils":"sponge-microbial reef ",
