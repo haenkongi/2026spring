@@ -112,7 +112,7 @@
         "lng":129.082098,
         "stratum":"Dumugol Formation",
         "period":"Early Ordovician",
-        "fossils":"Microbial - sponge(Archaeoscyphia) reef",
+        "fossils":"Lithistid sponge (Archaeoscyphia) - microbial - calathid (receptaculitid) reef",
         "note":null,
         "image":[
             {
@@ -126,6 +126,10 @@
             {
                 "path":"images\/Choh_et_al_2013_3.png",
                 "caption":"Photograph of SJ sponge-microbial-calathid reefs (SMCr) at the Seokgaejae area where the upper three of five reef-bearing intervals are exposed along a forest service road. (Choh et al., 2013)"
+            },
+            {
+                "path":"images\/Choh_et_al_2013_6.png",
+                "caption":"Goblet- shape calathid (Rc; left) and Archaeoscyphia (Ls) with donut-shaped transverse cut (white arrow) in the Seokgaejae patch reef. Note the holdfast of the calathid (Rch) which appears to be attached (black arrow) to another Archaeoscyphia. (Choh et al., 2013)"
             }
         ]
     },
@@ -146,18 +150,6 @@
                 "path":"images\/Choh_et_al_2013_2",
                 "caption":"Microbial clots (Mc; arrows) and rare lithistid Archaeoscyphia (Ls) of the Gumunso G3 thrombolitic reef.(Choh et al., 2013)"
             }
-        ]
-    },
-    {
-        "title":"Gumunso, Taebaek",
-        "lat":37.053161,
-        "lng":129.024533,
-        "stratum":"Dumugol Formation",
-        "period":"Early Ordovician",
-        "fossils":null,
-        "note":null,
-        "image":[
-
         ]
     },
     {
