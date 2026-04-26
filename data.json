@@ -79,7 +79,7 @@
         "image":[
             {
                 "path":"images\/Lee_et_al_2025_1.png",
-                "caption":"Fig. 4 Darriwilian and Sandbian conodonts. (a–c) Plectodina sp. cf. P.\nflorida Sweet, 1979; (a) Sc element, lateral view, WC3, JBNU25-25;\n(b) Sb element, lateral view, WC3, JBNU25-26; (c) Sc element, lateral\nview, WC3, JBNU25-29. (d, e) Plectodina onychodonta An and Xu\nin An et al., 1983. (d) Sa element, posterior view, WC3, JBNU25-27;\n(e) M element, lateral view, WC3, JBNU25-28. (f–i) Microcoelodus\nasymmetricus (Branson & Mehl, 1933); (f) symmetrical S element,\nposterolateral view, EC2, JBNU25-01; (g) symmetrical S element,\nposterior view, YS2-13, JBNU25-02; (h) asymmetrical S element,\nposterior view, EC2, JBNU25-05; (i) asymmetrical S element, poste-\nrior view, EC2, JBNU25-06. (j–n) Tasmanognathus sishuiensis Zhang\nin An et al., 1983; (j) Sa element, posterior view, EC2, JBNU25-07;\n(k) Pa element, lateral view, EC2, JBNU25-08; (l) Pa element, lat-\neral view, YS2-13, JBNU25-09; (m) Sc element, lateral view, EC2,\nJBNU25-10; (n) Pb element, lateral view, EC2, JBNU25-12. (o)\nErismodus typus Branson & Mehl, 1933; Pa element, posterior view,\nEC2, JBNU25-13. (p, q) Tasmanognathus careyi Burrett, 1979; (p)\nSa element, posterior view, EC2, JBNU25-16; (q) Sb element, pos-\nterior view, EC2, JBNU25-17. (r) Acontiodus viriosus Cui in An et\nal., 1983; posterior view, EC2, JBNU25-31. (s, t) Panderodus gracilis\n(Branson & Mehl, 1933); (s) P element, inner-lateral view, YS2-13,\nJBNU25-32; (t) P element, inner-lateral view, EC2, JBNU25-33. (u,\nv) Plectodina aculeata (Stauffer, 1935); (u) Pb element, lateral view,\nEC2, JBNU25-21; (v) S element, posterior view, EC2, JBNU25-22.\n(w) Protopanderodus nogamii (Lee, 1975); Sb element, lateral view,\nWC3, JBNU25-35. (x) Erismodus quadridactylus (Stauffer, 1935); S\nelement, lateral view, EC2, JBNU25-24. Scale bars\n=\n100 μm (Park et al., 2025)"
+                "caption":"Fig. 4 Darriwilian and Sandbian conodonts. (a–c) Plectodina sp. cf. P.\nflorida Sweet, 1979; (a) Sc element, lateral view, WC3, JBNU25-25;\n(b) Sb element, lateral view, WC3, JBNU25-26; (c) Sc element, lateral\nview, WC3, JBNU25-29. (d, e) Plectodina onychodonta An and Xu\nin An et al., 1983. (d) Sa element, posterior view, WC3, JBNU25-27;\n(e) M element, lateral view, WC3, JBNU25-28. (f–i) Microcoelodus\nasymmetricus (Branson & Mehl, 1933); (f) symmetrical S element,\nposterolateral view, EC2, JBNU25-01; (g) symmetrical S element,\nposterior view, YS2-13, JBNU25-02; (h) asymmetrical S element,\nposterior view, EC2, JBNU25-05; (i) asymmetrical S element, poste-\nrior view, EC2, JBNU25-06. (j–n) Tasmanognathus sishuiensis Zhang\nin An et al., 1983; (j) Sa element, posterior view, EC2, JBNU25-07;\n(k) Pa element, lateral view, EC2, JBNU25-08; (l) Pa element, lat-\neral view, YS2-13, JBNU25-09; (m) Sc element, lateral view, EC2,\nJBNU25-10; (n) Pb element, lateral view, EC2, JBNU25-12. (o)\nErismodus typus Branson & Mehl, 1933; Pa element, posterior view,\nEC2, JBNU25-13. (p, q) Tasmanognathus careyi Burrett, 1979; (p)\nSa element, posterior view, EC2, JBNU25-16; (q) Sb element, pos-\nterior view, EC2, JBNU25-17. (r) Acontiodus viriosus Cui in An et\nal., 1983; posterior view, EC2, JBNU25-31. (s, t) Panderodus gracilis\n(Branson & Mehl, 1933); (s) P element, inner-lateral view, YS2-13,\nJBNU25-32; (t) P element, inner-lateral view, EC2, JBNU25-33. (u,\nv) Plectodina aculeata (Stauffer, 1935); (u) Pb element, lateral view,\nEC2, JBNU25-21; (v) S element, posterior view, EC2, JBNU25-22.\n(w) Protopanderodus nogamii (Lee, 1975); Sb element, lateral view,\nWC3, JBNU25-35. (x) Erismodus quadridactylus (Stauffer, 1935); S\nelement, lateral view, EC2, JBNU25-24. Scale bars\n=\n100 μm (Lee et al., 2025)"
             }
         ]
     },
@@ -103,6 +103,79 @@
             {
                 "path":"images\/Lee_et_al_2022_3.png",
                 "caption":"e) Lithistid sponge skeleton (line) composed largely of straight-form spicules. Note the rectangle and its inset showing enlarged desma (red lines and arrow). (Lee et al., 2022)"
+            }
+        ]
+    },
+    {
+        "title":"Seokgaejae, Taebaek",
+        "lat":37.044747,
+        "lng":129.082098,
+        "stratum":"Dumugol Formation",
+        "period":"Early Ordovician",
+        "fossils":"Microbial - sponge(Archaeoscyphia) reef",
+        "note":null,
+        "image":[
+            {
+                "path":"images\/Hong_et_al_2015_1.png",
+                "caption":"Photograph and interpretive tracing of a transverse cut thin section showing siliceous sponge-dom- inant (upper right) boundstone, in which closely spaced Archaeoscyphia and mutually attached sponge frameworks are bound by peloidal micritic crusts. (Hong et al., 2015)"
+            },
+            {
+                "path":"images\/Hong_et_al_2015_2.png",
+                "caption":"Photomicrograph of Archaeoscyphia, with its characteristic well-organized lattice-like arrangement of spicules.(Hong et al., 2015)"
+            },
+            {
+                "path":"images\/Choh_et_al_2013_3.png",
+                "caption":"Photograph of SJ sponge-microbial-calathid reefs (SMCr) at the Seokgaejae area where the upper three of five reef-bearing intervals are exposed along a forest service road. (Choh et al., 2013)"
+            }
+        ]
+    },
+    {
+        "title":"Gumunso, Taebaek",
+        "lat":37.052605,
+        "lng":129.023688,
+        "stratum":"Dumugol Formation",
+        "period":"Early Ordovician",
+        "fossils":"lithistid sponge-microbialite (reef)",
+        "note":null,
+        "image":[
+            {
+                "path":"images\/Choh_et_al_2013_1.png",
+                "caption":"Detailed photograph of rectangle in Figure 2a showing transverse cut of cone-shaped Archaeoscyphia (Ar; arrows and their sketches). Note the occurrence of many such round-shaped fossils which are mostly lithistid sponges. (Choh et al., 2013)"
+            },
+            {
+                "path":"images\/Choh_et_al_2013_2",
+                "caption":"Microbial clots (Mc; arrows) and rare lithistid Archaeoscyphia (Ls) of the Gumunso G3 thrombolitic reef.(Choh et al., 2013)"
+            }
+        ]
+    },
+    {
+        "title":"Gumunso, Taebaek",
+        "lat":37.053161,
+        "lng":129.024533,
+        "stratum":"Dumugol Formation",
+        "period":"Early Ordovician",
+        "fossils":null,
+        "note":null,
+        "image":[
+
+        ]
+    },
+    {
+        "title":"Sangdong, Taebaek",
+        "lat":37.0914,
+        "lng":128.522767,
+        "stratum":"Dumugol Formation",
+        "period":"Early Ordovician",
+        "fossils":"sponge-microbial reef ",
+        "note":null,
+        "image":[
+            {
+                "path":"images\/Choh_et_al_2013_4.png",
+                "caption":"Photograph of S1 sponge-microbial reef (SMr) at the Sangdong. Note patches of partially dolomitized burrow (arrows). (Choh et al., 2013)"
+            },
+            {
+                "path":"imgaes\/Choh_et_al_2013_5.png",
+                "caption":"Well-preserved Archaeoscyphia sponge (Ls) of the Sangdong S1 patch reef. (Choh et al., 2013)"
             }
         ]
     }
