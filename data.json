@@ -69,6 +69,10 @@
         "note":null,
         "image":[
             {
+                "path":"images\/Lee_et_al_2022_4.png",
+                "caption":"Outcrop photograph of the Daegi Formation in the study area. Note that curved and convex-up bedding (dashed lines) is easily recognized. An arrow indicates stratigraphic way-up direction. (Lee et al., 2022)"
+            },
+            {
                 "path":"images\/Lee_et_al_2022_1.png",
                 "caption":"Fig. 4. Slab photographs of the Daegi reefs. a-b) Thromboid-sponge bioherms showing millimeter-scale darker mesoclots (arrows) and the surrounding lighter micritic sediments. These mesoclots are coalesced vertically and laterally. c) Microbial crust bioherm composed predominantly of whitish, platy to arcuate crusts (arrows). (Lee et al., 2022)"
             },
@@ -142,8 +146,31 @@
                 "caption":"Photograph of S1 sponge-microbial reef (SMr) at the Sangdong. Note patches of partially dolomitized burrow (arrows). (Choh et al., 2013)"
             },
             {
-                "path":"imgaes\/Choh_et_al_2013_5.png",
+                "path":"images\/Choh_et_al_2013_5.png",
                 "caption":"Well-preserved Archaeoscyphia sponge (Ls) of the Sangdong S1 patch reef. (Choh et al., 2013)"
+            }
+        ]
+    },
+    {
+        "title":"Araetgol, Yeongwol",
+        "lat":37.285278,
+        "lng":128.432778,
+        "stratum":"Mungok Formation",
+        "period":"Early Ordovician (Tremadocian)",
+        "fossils":"Stromatolite, thrombolite (Keratose sponge-microbial consortia) reef",
+        "note":null,
+        "image":[
+            {
+                "path":"images\/Pham_et_al_2021_1.png",
+                "caption":"Outcrop view of stromatolite-like columns.\nScale in centimetres (Pham et al., 2021)."
+            },
+            {
+                "path":"images\/Pham_et_al_2021_2.png",
+                "caption":"Lateral gradational change from a dense to loose keratolite network. (Pham et al., 2021)"
+            },
+            {
+                "path":"images\/Pham_et_al_2021_3.png",
+                "caption":"Photographs of (A) a polished slab and (B) corresponding thin sections of the thrombolite-like mounds. Irregular to bulbous keratose–microbial clots (red dashed lines) and lithistid–microstromatolite clots (yellow dashed lines) are surrounded by ribbon rocks composed of alternating lime mudstone and shale beds."
             }
         ]
     }
