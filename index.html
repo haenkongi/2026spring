@@ -1,286 +1,286 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taebaeksan Basin Paleozoic Fossil Archive</title>
-    
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taebaeksan Basin Paleozoic Fossil Archive</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-    <style>
-        :root {
-            --bg-color: #fcfcfc;
-            --panel-bg: #ffffff;
-            --accent: #c0392b;
-            --text-dark: #2c3e50;
-        }
+    <style>
+        :root {
+            --bg-color: #fcfcfc;
+            --panel-bg: #ffffff;
+            --accent: #c0392b;
+            --text-dark: #2c3e50;
+        }
 
-        body {
-            font-family: 'Pretendard', -apple-system, sans-serif;
-            margin: 0;
-            display: flex;
-            height: 100vh;
-            background-color: var(--bg-color);
-            color: var(--text-dark);
-            overflow: hidden;
-        }
+        body {
+            font-family: 'Pretendard', -apple-system, sans-serif;
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            overflow: hidden;
+        }
 
-        #side-panel {
-            width: 400px;
-            background: var(--panel-bg);
-            border-right: 1px solid #e0e0e0;
-            display: flex;
-            flex-direction: column;
-            padding: 30px;
-            z-index: 1000;
-            overflow-y: auto;
-        }
+        #side-panel {
+            width: 400px;
+            background: var(--panel-bg);
+            border-right: 1px solid #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+            z-index: 1000;
+            overflow-y: auto;
+        }
 
-        header h1 { font-size: 1.4rem; margin: 0; font-weight: 800; border-left: 4px solid var(--accent); padding-left: 12px; }
-        header p { font-size: 0.85rem; color: #7f8c8d; margin: 8px 0 20px 0; }
+        header h1 { font-size: 1.4rem; margin: 0; font-weight: 800; border-left: 4px solid var(--accent); padding-left: 12px; }
+        header p { font-size: 0.85rem; color: #7f8c8d; margin: 8px 0 20px 0; }
 
-        .filter-select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-family: inherit;
-            margin-bottom: 12px;
-            background-color: #fff;
-            font-size: 0.9rem;
-            cursor: pointer;
-        }
+        .filter-select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+            margin-bottom: 12px;
+            background-color: #fff;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
 
-        #content-view { display: none; }
-        .data-box { margin-bottom: 20px; }
-        .label { font-size: 0.7rem; font-weight: 800; color: var(--accent); text-transform: uppercase; display: block; margin-bottom: 5px; }
-        .value { font-size: 1rem; line-height: 1.5; font-weight: 600; }
-        .description { font-size: 0.9rem; background: #f9f9f9; padding: 15px; border-radius: 6px; border: 1px solid #eee; line-height: 1.6; }
+        #content-view { display: none; }
+        .data-box { margin-bottom: 20px; }
+        .label { font-size: 0.7rem; font-weight: 800; color: var(--accent); text-transform: uppercase; display: block; margin-bottom: 5px; }
+        .value { font-size: 1rem; line-height: 1.5; font-weight: 600; }
+        .description { font-size: 0.9rem; background: #f9f9f9; padding: 15px; border-radius: 6px; border: 1px solid #eee; line-height: 1.6; }
 
-        #image-box { 
-            display: none; 
-            margin-top: 30px; 
-            padding-top: 20px;
-            border-top: 1px double #ddd; 
-            text-align: center; 
-        }
-        .fossil-img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 4px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            border: 1px solid #eee;
-            display: block;
-            margin: 0 auto;
-        }
-        .img-caption {
-            font-size: 0.85rem;
-            color: #7f8c8d;
-            margin-top: 10px;
-            margin-bottom: 25px;
-            font-style: italic;
-            line-height: 1.4;
-            text-align: left;
-        }
+        #image-box { 
+            display: none; 
+            margin-top: 30px; 
+            padding-top: 20px;
+            border-top: 1px double #ddd; 
+            text-align: center; 
+        }
+        .fossil-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 1px solid #eee;
+            display: block;
+            margin: 0 auto;
+        }
+        .img-caption {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            margin-top: 10px;
+            margin-bottom: 25px;
+            font-style: italic;
+            line-height: 1.4;
+            text-align: left;
+        }
 
-        #map { flex: 1; height: 100%; cursor: default !important; }
-        .welcome-msg { text-align: center; color: #bdc3c7; margin-top: 80px; font-size: 0.9rem; }
-    </style>
+        #map { flex: 1; height: 100%; cursor: default !important; }
+        .welcome-msg { text-align: center; color: #bdc3c7; margin-top: 80px; font-size: 0.9rem; }
+    </style>
 </head>
 <body>
 
 <aside id="side-panel">
-    <header>
-        <h1>TAEBAEKSAN BASIN</h1>
-        <p>Paleozoic Fossil Database</p>
-    </header>
+    <header>
+        <h1>TAEBAEKSAN BASIN</h1>
+        <p>Paleozoic Fossil Database</p>
+    </header>
 
-    <div id="filter-container" style="margin-bottom: 25px;">
-        <div class="data-box" style="margin-bottom: 10px;">
-            <span class="label">Formation</span>
-            <select id="f-stratum" class="filter-select">
-                <option value="all">All Formations</option>
-                <option value="Yeongheung">Yeongheung Formation</option>
-                <option value="Jigunsan">Jigunsan Formation</option>
-                <option value="Duwibong">Duwibong Formation</option>
-                <option value="Mungok">Mungok Formation</option>
-            </select>
-        </div>
-        <div class="data-box" style="margin-bottom: 10px;">
-            <span class="label">Period</span>
-            <select id="f-period" class="filter-select">
-                <option value="all">All Periods</option>
-                <option value="Ordovician">Ordovician</option>
-                <option value="Cambrian">Cambrian</option>
-            </select>
-        </div>
-        <div class="data-box">
-            <span class="label">Fossil Category</span>
-            <select id="f-fossil" class="filter-select">
-                <option value="all">All Categories</option>
-                <option value="Trilobite">Trilobite</option>
-                <option value="Reef">Reef</option>
-                <option value="Conodont">Conodont</option>
-            </select>
-        </div>
-    </div>
+    <div id="filter-container" style="margin-bottom: 25px;">
+        <div class="data-box" style="margin-bottom: 10px;">
+            <span class="label">Formation</span>
+            <select id="f-stratum" class="filter-select">
+                <option value="all">All Formations</option>
+                <option value="Yeongheung">Yeongheung Formation</option>
+                <option value="Jigunsan">Jigunsan Formation</option>
+                <option value="Duwibong">Duwibong Formation</option>
+                <option value="Mungok">Mungok Formation</option>
+            </select>
+        </div>
+        <div class="data-box" style="margin-bottom: 10px;">
+            <span class="label">Period</span>
+            <select id="f-period" class="filter-select">
+                <option value="all">All Periods</option>
+                <option value="Ordovician">Ordovician</option>
+                <option value="Cambrian">Cambrian</option>
+            </select>
+        </div>
+        <div class="data-box">
+            <span class="label">Fossil Category</span>
+            <select id="f-fossil" class="filter-select">
+                <option value="all">All Categories</option>
+                <option value="Trilobite">Trilobite</option>
+                <option value="Reef">Reef</option>
+                <option value="Conodont">Conodont</option>
+            </select>
+        </div>
+    </div>
 
-    <div id="welcome" class="welcome-msg">
-        <hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 20px;">
-        <p>Click on a map point to view<br>detailed information and photos.</p>
-    </div>
+    <div id="welcome" class="welcome-msg">
+        <hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 20px;">
+        <p>Click on a map point to view<br>detailed information and photos.</p>
+    </div>
 
-    <div id="content-view">
-        <div class="data-box">
-            <span class="label">Location</span>
-            <div id="v-title" class="value">-</div>
-        </div>
-        <div class="data-box">
-            <span class="label">Stratum / Period</span>
-            <div class="value"><span id="v-stratum">-</span> / <span id="v-period">-</span></div>
-        </div>
-        <div class="data-box">
-            <span class="label">Major Fossils</span>
-            <div id="v-fossils" class="value">-</div>
-        </div>
-        <div class="data-box">
-            <span class="label">Academic Note</span>
-            <div id="v-note" class="description">-</div>
-        </div>
-        <div id="image-box">
-            <span class="label">Fossil Photos & Captions</span>
-        </div>
-    </div>
+    <div id="content-view">
+        <div class="data-box">
+            <span class="label">Location</span>
+            <div id="v-title" class="value">-</div>
+        </div>
+        <div class="data-box">
+            <span class="label">Stratum / Period</span>
+            <div class="value"><span id="v-stratum">-</span> / <span id="v-period">-</span></div>
+        </div>
+        <div class="data-box">
+            <span class="label">Major Fossils</span>
+            <div id="v-fossils" class="value">-</div>
+        </div>
+        <div class="data-box">
+            <span class="label">Academic Note</span>
+            <div id="v-note" class="description">-</div>
+        </div>
+        <div id="image-box">
+            <span class="label">Fossil Photos & Captions</span>
+        </div>
+    </div>
 </aside>
 
 <main id="map"></main>
 
 <script>
-    // [중요] KIGAM API 키를 여기에 입력하세요
-    const kigamApiKey = 'YiM6FrxU4pxUv59x8ichWtE0GdyRjt';
+    // [중요] KIGAM API 키를 여기에 입력하세요
+    const kigamApiKey = 'YiM6FrxU4pxUv59x8ichWtE0GdyRjt';
 
-    // 1. 기본 배경 지도 설정
-    const baseMap = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png');
+    // 1. 기본 배경 지도 설정
+    const baseMap = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png');
 
-    // 2. KIGAM 지질도 레이어 설정 (WMS)
-    const geologicalMap = L.tileLayer.wms('https://data.kigam.re.kr/mgeo/openapi/wms', {
-        layers: 'mgeo:mgeo_50k', // 1:50,000 정밀 지질도
-        format: 'image/png',
-        transparent: true,
-        version: '1.1.1',
-        key: kigamApiKey,
-        attribution: 'KIGAM'
-    }).setOpacity(0.6); // 지표면이 보이도록 투명도 60% 설정
+    // 2. KIGAM 지질도 레이어 설정 (WMS)
+    const geologicalMap = L.tileLayer.wms('https://data.kigam.re.kr/mgeo/openapi/wms', {
+        layers: 'mgeo:mgeo_50k', // 1:50,000 정밀 지질도
+        format: 'image/png',
+        transparent: true,
+        version: '1.1.1',
+        key: kigamApiKey,
+        attribution: 'KIGAM'
+    }).setOpacity(0.6); // 지표면이 보이도록 투명도 60% 설정
 
-    // 3. 지도 초기화
-    const map = L.map('map', { 
-        center: [37.2, 128.6], 
-        zoom: 9, 
-        zoomControl: false, 
-        dragging: true, 
-        scrollWheelZoom: true, 
-        doubleClickZoom: false, 
-        attributionControl: false,
-        layers: [baseMap, geologicalMap] // 기본적으로 지질도를 켠 채로 시작
-    });
+    // 3. 지도 초기화
+    const map = L.map('map', { 
+        center: [37.2, 128.6], 
+        zoom: 9, 
+        zoomControl: false, 
+        dragging: true, 
+        scrollWheelZoom: true, 
+        doubleClickZoom: false, 
+        attributionControl: false,
+        layers: [baseMap, geologicalMap] // 기본적으로 지질도를 켠 채로 시작
+    });
 
-    // 4. 레이어 컨트롤러 추가 (우측 상단에서 지질도를 껐다 켰다 할 수 있음)
-    const baseLayers = { "General Map": baseMap };
-    const overlayLayers = { "Geological Map (1:50k)": geologicalMap };
-    L.control.layers(baseLayers, overlayLayers, { collapsed: false }).addTo(map);
+    // 4. 레이어 컨트롤러 추가 (우측 상단에서 지질도를 껐다 켰다 할 수 있음)
+    const baseLayers = { "General Map": baseMap };
+    const overlayLayers = { "Geological Map (1:50k)": geologicalMap };
+    L.control.layers(baseLayers, overlayLayers, { collapsed: false }).addTo(map);
 
-    const welcome = document.getElementById('welcome');
-    const contentView = document.getElementById('content-view');
-    const imageBox = document.getElementById('image-box');
-    
-    const selStratum = document.getElementById('f-stratum');
-    const selPeriod = document.getElementById('f-period');
-    const selFossil = document.getElementById('f-fossil');
+    const welcome = document.getElementById('welcome');
+    const contentView = document.getElementById('content-view');
+    const imageBox = document.getElementById('image-box');
+    
+    const selStratum = document.getElementById('f-stratum');
+    const selPeriod = document.getElementById('f-period');
+    const selFossil = document.getElementById('f-fossil');
 
-    let markersArray = [];
+    let markersArray = [];
 
-    fetch('data.json')
-        .then(res => res.json())
-        .then(data => {
-            data.forEach(item => {
-                const marker = L.circleMarker([item.lat, item.lng], {
-                    radius: 8, fillColor: "#c0392b", color: "#fff", weight: 2, opacity: 1, fillOpacity: 0.9, interactive: true
-                }).addTo(map);
+    fetch('data.json')
+        .then(res => res.json())
+        .then(data => {
+            data.forEach(item => {
+                const marker = L.circleMarker([item.lat, item.lng], {
+                    radius: 8, fillColor: "#c0392b", color: "#fff", weight: 2, opacity: 1, fillOpacity: 0.9, interactive: true
+                }).addTo(map);
 
-                markersArray.push({
-                    marker: marker,
-                    stratum: item.stratum || "",
-                    period: item.period || "",
-                    fossils: item.fossils || ""
-                });
+                markersArray.push({
+                    marker: marker,
+                    stratum: item.stratum || "",
+                    period: item.period || "",
+                    fossils: item.fossils || ""
+                });
 
-                marker.on('click', () => {
-                    welcome.style.display = 'none';
-                    contentView.style.display = 'block';
+                marker.on('click', () => {
+                    welcome.style.display = 'none';
+                    contentView.style.display = 'block';
 
-                    document.getElementById('v-title').innerText = item.title || "-";
-                    document.getElementById('v-stratum').innerText = item.stratum || "-";
-                    document.getElementById('v-period').innerText = item.period || "-";
-                    document.getElementById('v-fossils').innerText = item.fossils || "-";
-                    document.getElementById('v-note').innerText = item.note || "-";
+                    document.getElementById('v-title').innerText = item.title || "-";
+                    document.getElementById('v-stratum').innerText = item.stratum || "-";
+                    document.getElementById('v-period').innerText = item.period || "-";
+                    document.getElementById('v-fossils').innerText = item.fossils || "-";
+                    document.getElementById('v-note').innerText = item.note || "-";
 
-                    imageBox.innerHTML = '<span class="label">Fossil Photos & Captions</span>'; 
-                    
-                    if (item.image && Array.isArray(item.image) && item.image.length > 0) {
-                        item.image.forEach(imgData => {
-                            const wrapper = document.createElement('div');
-                            wrapper.style.marginBottom = '25px';
+                    imageBox.innerHTML = '<span class="label">Fossil Photos & Captions</span>'; 
+                    
+                    if (item.image && Array.isArray(item.image) && item.image.length > 0) {
+                        item.image.forEach(imgData => {
+                            const wrapper = document.createElement('div');
+                            wrapper.style.marginBottom = '25px';
 
-                            const imgElement = document.createElement('img');
-                            imgElement.src = encodeURI(imgData.path) + "?v=" + new Date().getTime();
-                            imgElement.className = 'fossil-img';
-                            
-                            const captionElement = document.createElement('p');
-                            captionElement.innerText = imgData.caption || "";
-                            captionElement.className = 'img-caption';
+                            const imgElement = document.createElement('img');
+                            imgElement.src = encodeURI(imgData.path) + "?v=" + new Date().getTime();
+                            imgElement.className = 'fossil-img';
+                            
+                            const captionElement = document.createElement('p');
+                            captionElement.innerText = imgData.caption || "";
+                            captionElement.className = 'img-caption';
 
-                            wrapper.appendChild(imgElement);
-                            wrapper.appendChild(captionElement);
-                            imageBox.appendChild(wrapper);
-                        });
-                        imageBox.style.display = 'block';
-                    } else {
-                        imageBox.style.display = 'none';
-                    }
-                });
+                            wrapper.appendChild(imgElement);
+                            wrapper.appendChild(captionElement);
+                            imageBox.appendChild(wrapper);
+                        });
+                        imageBox.style.display = 'block';
+                    } else {
+                        imageBox.style.display = 'none';
+                    }
+                });
 
-                marker.on('mouseover', function() { this.setRadius(10); this.setStyle({ fillColor: "#e74c3c" }); });
-                marker.on('mouseout', function() { this.setRadius(8); this.setStyle({ fillColor: "#c0392b" }); });
-            });
-        })
-        .catch(err => console.error("Data loading failed:", err));
+                marker.on('mouseover', function() { this.setRadius(10); this.setStyle({ fillColor: "#e74c3c" }); });
+                marker.on('mouseout', function() { this.setRadius(8); this.setStyle({ fillColor: "#c0392b" }); });
+            });
+        })
+        .catch(err => console.error("Data loading failed:", err));
 
-    function applyFilters() {
-        const valStratum = selStratum.value;
-        const valPeriod = selPeriod.value;
-        const valFossil = selFossil.value;
+    function applyFilters() {
+        const valStratum = selStratum.value;
+        const valPeriod = selPeriod.value;
+        const valFossil = selFossil.value;
 
-        markersArray.forEach(obj => {
-            const matchStrat = (valStratum === 'all') || (obj.stratum.includes(valStratum));
-            const matchPeri = (valPeriod === 'all') || (obj.period.includes(valPeriod));
-            const matchFoss = (valFossil === 'all') || (obj.fossils.toLowerCase().includes(valFossil.toLowerCase()));
+        markersArray.forEach(obj => {
+            const matchStrat = (valStratum === 'all') || (obj.stratum.includes(valStratum));
+            const matchPeri = (valPeriod === 'all') || (obj.period.includes(valPeriod));
+            const matchFoss = (valFossil === 'all') || (obj.fossils.toLowerCase().includes(valFossil.toLowerCase()));
 
-            if (matchStrat && matchPeri && matchFoss) {
-                obj.marker.addTo(map);
-            } else {
-                map.removeLayer(obj.marker);
-            }
-        });
+            if (matchStrat && matchPeri && matchFoss) {
+                obj.marker.addTo(map);
+            } else {
+                map.removeLayer(obj.marker);
+            }
+        });
 
-        welcome.style.display = 'block';
-        contentView.style.display = 'none';
-    }
+        welcome.style.display = 'block';
+        contentView.style.display = 'none';
+    }
 
-    selStratum.addEventListener('change', applyFilters);
-    selPeriod.addEventListener('change', applyFilters);
-    selFossil.addEventListener('change', applyFilters);
+    selStratum.addEventListener('change', applyFilters);
+    selPeriod.addEventListener('change', applyFilters);
+    selFossil.addEventListener('change', applyFilters);
 </script>
 
 </body>
-</html> 
+</html>
