@@ -163,15 +163,16 @@
     // 1. 기본 배경 지도 설정
     const baseMap = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png');
 
-    // 2. KIGAM 지질도 레이어 설정 (WMS)
+    // 2. KIGAM 지질도 레이어 설정 (수정된 버전)
     const geologicalMap = L.tileLayer.wms('https://data.kigam.re.kr/mgeo/openapi/wms', {
-        layers: 'mgeo:mgeo_50k', // 1:50,000 정밀 지질도
+        layers: 'mgeo:mgeo_50k', // 1:50,000 지질도 레이어명
         format: 'image/png',
         transparent: true,
-        version: '1.1.1',
-        key: kigamApiKey,
+        version: '1.3.0',        // 버전을 1.1.1에서 1.3.0으로 변경 시도
+        crs: L.CRS.EPSG3857,    // Leaflet 기본 좌표계 명시
+        key: kigamApiKey,        // API 키 파라미터
         attribution: 'KIGAM'
-    }).setOpacity(0.6); // 지표면이 보이도록 투명도 60% 설정
+    }).setOpacity(0.6);
 
     // 3. 지도 초기화
     const map = L.map('map', { 
