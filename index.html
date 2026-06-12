@@ -14,8 +14,8 @@
             --panel-bg: #ffffff;
             --accent: #c0392b;
             --text-dark: #2c3e50;
-            --naver-green: #03C75A;
-            --wiki-blue: #3366cc; /* 위키피디아 테마 컬러 */
+            --naver-green: #03C75A; /* 네이버 브랜드 컬러 */
+            --wiki-blue: #3366cc;    /* 위키피디아 브랜드 컬러 */
         }
 
         body {
@@ -29,6 +29,7 @@
             position: relative;
         }
 
+        /* 왼쪽 사이드바 패널 */
         #side-panel {
             width: 400px;
             background: var(--panel-bg);
@@ -61,6 +62,7 @@
         .value { font-size: 1rem; line-height: 1.5; font-weight: 600; }
         .description { font-size: 0.9rem; background: #f9f9f9; padding: 15px; border-radius: 6px; border: 1px solid #eee; line-height: 1.6; }
         
+        /* 네이버 지도 바로가기 버튼 */
         .naver-btn {
             display: inline-block;
             background-color: var(--naver-green);
@@ -74,6 +76,7 @@
         }
         .naver-btn:hover { background-color: #029e47; }
 
+        /* 참고문헌 DOI 링크 스타일 */
         .doi-link {
             display: inline-block;
             color: var(--accent);
@@ -85,6 +88,7 @@
         }
         .doi-link:hover { text-decoration: underline; }
 
+        /* 화석 이미지 박스 */
         #image-box { 
             display: none; 
             margin-top: 30px; 
@@ -111,10 +115,11 @@
             text-align: left;
         }
 
+        /* 메인 지도 구역 */
         #map { flex: 1; height: 100%; cursor: default !important; }
         .welcome-msg { text-align: center; color: #bdc3c7; margin-top: 80px; font-size: 0.9rem; }
 
-        /* 우측 위키피디아 개요 패널 스타일 */
+        /* 우측 위키피디아 플로팅 패널 */
         #wiki-panel {
             position: absolute;
             right: 20px;
@@ -145,7 +150,6 @@
         .wiki-fossil-name { font-size: 1.1rem; font-weight: 700; color: #2c3e50; margin-bottom: 8px; }
         .wiki-content { font-size: 0.88rem; line-height: 1.6; color: #555; text-align: justify; }
         
-        /* 위키피디아 출처 링크 스타일 */
         .wiki-more-link {
             display: block;
             margin-top: 12px;
@@ -156,6 +160,7 @@
         }
         .wiki-more-link:hover { text-decoration: underline; }
 
+        /* 오른쪽에서 부드럽게 밀려오는 슬라이드 애니메이션 */
         @keyframes fadeInRight {
             from { opacity: 0; transform: translateX(20px); }
             to { opacity: 1; transform: translateX(0); }
@@ -179,6 +184,8 @@
                 <option value="Jigunsan">Jigunsan Formation</option>
                 <option value="Duwibong">Duwibong Formation</option>
                 <option value="Mungok">Mungok Formation</option>
+                <option value="Dumugol">Dumugol Formation</option>
+                <option value="Daegi">Daegi Formation</option>
             </select>
         </div>
         <div class="data-box" style="margin-bottom: 10px;">
@@ -247,10 +254,13 @@
 <main id="map"></main>
 
 <script>
+    // [중요] KIGAM API 키를 입력하세요
     const kigamApiKey = 'YiM6FrxU4pxUv59x8ichWtE0GdyRjt';
 
+    // 1. 기본 배경 지도 설정 (CartoDB Light 레이어)
     const baseMap = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png');
 
+    // 2. KIGAM 지질도 WMS 레이어 설정
     const geologicalMap = L.tileLayer.wms('https://data.kigam.re.kr/mgeo/openapi/wms', {
         layers: 'mgeo:mgeo_50k', 
         format: 'image/png',
@@ -261,6 +271,7 @@
         attribution: 'KIGAM'
     }).setOpacity(0.6);
 
+    // 3. 지도 객체 생성 및 초기화
     const map = L.map('map', { 
         center: [37.2, 128.6], 
         zoom: 9, 
@@ -272,10 +283,12 @@
         layers: [baseMap, geologicalMap] 
     });
 
+    // 4. 우측 상단 레이어 컨트롤러 바인딩
     const baseLayers = { "General Map": baseMap };
     const overlayLayers = { "Geological Map (1:50k)": geologicalMap };
     L.control.layers(baseLayers, overlayLayers, { collapsed: false }).addTo(map);
 
+    // UI 요소 바인딩
     const welcome = document.getElementById('welcome');
     const contentView = document.getElementById('content-view');
     const imageBox = document.getElementById('image-box');
@@ -283,7 +296,6 @@
     const vDoi = document.getElementById('v-doi');
     const vNaverLink = document.getElementById('v-naver-link');
     
-    // 위키피디아 패널 엘리먼트 제어
     const wikiPanel = document.getElementById('wiki-panel');
     const wikiTarget = document.getElementById('wiki-target');
     const wikiDesc = document.getElementById('wiki-desc');
@@ -295,14 +307,17 @@
 
     let markersArray = [];
 
+    // 5. data.json 파일 비동기 로드
     fetch('data.json')
         .then(res => res.json())
         .then(data => {
             data.forEach(item => {
+                // 서클 마커 생성 및 맵 추가
                 const marker = L.circleMarker([item.lat, item.lng], {
                     radius: 8, fillColor: "#c0392b", color: "#fff", weight: 2, opacity: 1, fillOpacity: 0.9, interactive: true
                 }).addTo(map);
 
+                // 필터 제어용 배열에 마커 메타데이터 저장
                 markersArray.push({
                     marker: marker,
                     stratum: item.stratum || "",
@@ -310,16 +325,19 @@
                     fossils: item.fossils || ""
                 });
 
+                // 6. 마커 클릭 이벤트 핸들러
                 marker.on('click', () => {
                     welcome.style.display = 'none';
                     contentView.style.display = 'block';
 
+                    // 기본 텍스트 렌더링
                     document.getElementById('v-title').innerText = item.title || "-";
                     document.getElementById('v-stratum').innerText = item.stratum || "-";
                     document.getElementById('v-period').innerText = item.period || "-";
                     document.getElementById('v-fossils').innerText = item.fossils || "-";
                     document.getElementById('v-note').innerText = item.note || "-";
 
+                    // 네이버 지도 연동 URL 주입
                     if (item.lat && item.lng) {
                         const encodedTitle = encodeURIComponent(item.title);
                         vNaverLink.href = `https://map.naver.com?lng=${item.lng}&lat=${item.lat}&title=${encodedTitle}`;
@@ -328,52 +346,65 @@
                         vNaverLink.style.display = 'none';
                     }
 
-                    // [수정] 위키피디아 실시간 API 호출 로직
+                    // 7. [핵심수정] 위키피디아 키워드 동적 정제 및 호출 로직
                     const fossilText = (item.fossils || "").toLowerCase();
                     let wikiKeyword = "";
 
-                    // 복잡한 텍스트에서 위키피디아 검색용 핵심 키워드 정제추출
+                    // 문장이 복잡한 대표 화석들은 우선순위 하드코딩 매칭
                     if (fossilText.includes("conodont")) wikiKeyword = "Conodont";
                     else if (fossilText.includes("stromatoporoid")) wikiKeyword = "Stromatoporoid";
-                    else if (fossilText.includes("sponge")) wikiKeyword = "Sponge";
-                    else if (fossilText.includes("stromatolite")) wikiKeyword = "Stromatolite";
-                    else if (fossilText.includes("thrombolite")) wikiKeyword = "Thrombolite";
                     else if (fossilText.includes("trilobite")) wikiKeyword = "Trilobite";
+                    else if (fossilText.includes("thrombolite")) wikiKeyword = "Thrombolite";
+                    else if (fossilText.includes("stromatolite")) wikiKeyword = "Stromatolite";
+                    else if (fossilText.includes("sponge")) wikiKeyword = "Sponge";
 
+                    // 새로운 단독 화석명(예: dendrolite reef)이 들어온 경우 자동 정제 서브루틴 가동
+                    if (!wikiKeyword && item.fossils) {
+                        let cleaned = item.fossils
+                            .replace(/reef|complex/gi, "") // 대소문자 없이 reef, complex 단어 제거
+                            .replace(/\(.*?\)/g, "")       // 모든 괄호 영역과 괄호 속 내용 제거
+                            .replace(/[,-\/]/g, "")        // 불필요한 문장부호(-, ,, /) 지우기
+                            .replace(/\s+/g, " ")          // 더블 스페이스를 싱글 스페이스로 압축
+                            .trim();                       // 앞뒤 잔여 공백 삭제
+                            
+                        if (cleaned) {
+                            // 위키피디아 규격 표준에 맞춰 첫 문글자만 대문자로 가공 (ex: dendrolite -> Dendrolite)
+                            wikiKeyword = cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
+                        }
+                    }
+
+                    // 정제된 키워드가 유효하면 위키피디아 REST API 호출
                     if (wikiKeyword) {
                         wikiTarget.innerText = wikiKeyword;
                         wikiDesc.innerText = "Loading summary from Wikipedia...";
                         wikiPanel.style.display = 'block';
 
-                        // 영문 위키피디아 공식 REST API 단락 요약 엔드포인트 호출
                         const wikiApiUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(wikiKeyword)}`;
                         
                         fetch(wikiApiUrl)
                             .then(response => {
-                                if (!response.ok) throw new Error("Wikipedia page not found");
+                                if (!response.ok) throw new Error("Wikipedia entry not found");
                                 return response.json();
                             })
                             .then(wikiData => {
-                                // 요약 내용(HTML 혹은 일반 텍스트) 반영
                                 wikiDesc.innerHTML = wikiData.extract_html || wikiData.extract;
-                                // 원문 링크 버튼 연결
                                 wikiMore.href = wikiData.content_urls.desktop.page;
                                 wikiMore.style.display = 'block';
                             })
                             .catch(err => {
-                                wikiDesc.innerText = "Failed to load academic description from Wikipedia.";
+                                wikiDesc.innerText = `Failed to load academic description for "${wikiKeyword}" from Wikipedia.`;
                                 wikiMore.style.display = 'none';
                             });
                     } else {
-                        // 키워드가 매칭되지 않는 특별 화석종일 때의 기본 레이아웃 예외처리
+                        // 분류되지 않는 특별 복합 성인 지층일 때 예외 렌더링
                         wikiTarget.innerText = item.fossils || "Paleozoic Fossil Component";
-                        wikiDesc.innerHTML = "This is a distinctive Paleozoic fossil dynamic component discovered in the Taebaeksan Basin sequence.";
+                        wikiDesc.innerHTML = "This is a distinctive Paleozoic fossil sedimentological structure components discovered in the Taebaeksan Basin sequence.";
                         wikiMore.style.display = 'none';
                         wikiPanel.style.display = 'block';
                     }
 
+                    // 8. 화석 이미지 및 캡션 출력 루프
                     imageBox.innerHTML = '<span class="label">Fossil Photos & Captions</span>'; 
-                    
                     if (item.image && Array.isArray(item.image) && item.image.length > 0) {
                         item.image.forEach(imgData => {
                             const wrapper = document.createElement('div');
@@ -396,6 +427,7 @@
                         imageBox.style.display = 'none';
                     }
 
+                    // 9. 최하단 DOI 논문 링크 리스트 출력 루프
                     vDoi.innerHTML = ''; 
                     if (item.doi) {
                         const doiList = Array.isArray(item.doi) ? item.doi : [item.doi];
@@ -411,6 +443,7 @@
                                     vDoi.appendChild(aTag);
                                 }
                             });
+                            doiBox.style.with = 'block';
                             doiBox.style.display = 'block';
                         } else {
                             doiBox.style.display = 'none';
@@ -420,12 +453,14 @@
                     }
                 });
 
+                // 마커 인터랙션 마우스 오버 효과 추가
                 marker.on('mouseover', function() { this.setRadius(10); this.setStyle({ fillColor: "#e74c3c" }); });
                 marker.on('mouseout', function() { this.setRadius(8); this.setStyle({ fillColor: "#c0392b" }); });
             });
         })
         .catch(err => console.error("Data loading failed:", err));
 
+    // 10. 상단 조건 셀렉트 박스 체인지 시 필터링 처리 알고리즘
     function applyFilters() {
         const valStratum = selStratum.value;
         const valPeriod = selPeriod.value;
@@ -443,12 +478,14 @@
             }
         });
 
+        // 필터 조작 시 UI 상태 초기화
         welcome.style.display = 'block';
         contentView.style.display = 'none';
         doiBox.style.display = 'none'; 
-        wikiPanel.style.display = 'none'; // 필터 적용 시 우측 위키피디아 패널 초기화 숨김
+        wikiPanel.style.display = 'none'; 
     }
 
+    // 필터 이벤트 청취자 등록
     selStratum.addEventListener('change', applyFilters);
     selPeriod.addEventListener('change', applyFilters);
     selFossil.addEventListener('change', applyFilters);
