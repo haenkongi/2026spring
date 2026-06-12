@@ -57,6 +57,20 @@
         .label { font-size: 0.7rem; font-weight: 800; color: var(--accent); text-transform: uppercase; display: block; margin-bottom: 5px; }
         .value { font-size: 1rem; line-height: 1.5; font-weight: 600; }
         .description { font-size: 0.9rem; background: #f9f9f9; padding: 15px; border-radius: 6px; border: 1px solid #eee; line-height: 1.6; }
+        
+        /* DOI 링크 스타일 정의 */
+        .doi-link {
+            display: inline-block;
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            word-break: break-all;
+        }
+        .doi-link:hover {
+            text-decoration: underline;
+        }
 
         #image-box { 
             display: none; 
@@ -148,6 +162,12 @@
             <span class="label">Academic Note</span>
             <div id="v-note" class="description">-</div>
         </div>
+        
+        <div class="data-box" id="doi-box" style="display: none;">
+            <span class="label">References (DOI)</span>
+            <div id="v-doi" class="value"></div>
+        </div>
+
         <div id="image-box">
             <span class="label">Fossil Photos & Captions</span>
         </div>
@@ -157,24 +177,20 @@
 <main id="map"></main>
 
 <script>
-    // [중요] KIGAM API 키를 여기에 입력하세요
     const kigamApiKey = 'YiM6FrxU4pxUv59x8ichWtE0GdyRjt';
 
-    // 1. 기본 배경 지도 설정
     const baseMap = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png');
 
-    // 2. KIGAM 지질도 레이어 설정 (수정된 버전)
     const geologicalMap = L.tileLayer.wms('https://data.kigam.re.kr/mgeo/openapi/wms', {
-        layers: 'mgeo:mgeo_50k', // 1:50,000 지질도 레이어명
+        layers: 'mgeo:mgeo_50k', 
         format: 'image/png',
         transparent: true,
-        version: '1.3.0',        // 버전을 1.1.1에서 1.3.0으로 변경 시도
-        crs: L.CRS.EPSG3857,    // Leaflet 기본 좌표계 명시
-        key: kigamApiKey,        // API 키 파라미터
+        version: '1.3.0',        
+        crs: L.CRS.EPSG3857,    
+        key: kigamApiKey,        
         attribution: 'KIGAM'
     }).setOpacity(0.6);
 
-    // 3. 지도 초기화
     const map = L.map('map', { 
         center: [37.2, 128.6], 
         zoom: 9, 
@@ -183,10 +199,9 @@
         scrollWheelZoom: true, 
         doubleClickZoom: false, 
         attributionControl: false,
-        layers: [baseMap, geologicalMap] // 기본적으로 지질도를 켠 채로 시작
+        layers: [baseMap, geologicalMap] 
     });
 
-    // 4. 레이어 컨트롤러 추가 (우측 상단에서 지질도를 껐다 켰다 할 수 있음)
     const baseLayers = { "General Map": baseMap };
     const overlayLayers = { "Geological Map (1:50k)": geologicalMap };
     L.control.layers(baseLayers, overlayLayers, { collapsed: false }).addTo(map);
@@ -194,6 +209,8 @@
     const welcome = document.getElementById('welcome');
     const contentView = document.getElementById('content-view');
     const imageBox = document.getElementById('image-box');
+    const doiBox = document.getElementById('doi-box');
+    const vDoi = document.getElementById('v-doi');
     
     const selStratum = document.getElementById('f-stratum');
     const selPeriod = document.getElementById('f-period');
@@ -225,6 +242,30 @@
                     document.getElementById('v-period').innerText = item.period || "-";
                     document.getElementById('v-fossils').innerText = item.fossils || "-";
                     document.getElementById('v-note').innerText = item.note || "-";
+
+                    // [추가] DOI 데이터 렌더링 로직
+                    vDoi.innerHTML = ''; // 초기화
+                    if (item.doi) {
+                        const doiList = Array.isArray(item.doi) ? item.doi : [item.doi];
+                        if (doiList.length > 0) {
+                            doiList.forEach(doiStr => {
+                                const cleanDoi = doiStr.trim();
+                                if(cleanDoi) {
+                                    const aTag = document.createElement('a');
+                                    aTag.href = `https://doi.org/${cleanDoi}`;
+                                    aTag.target = '_blank';
+                                    aTag.className = 'doi-link';
+                                    aTag.innerText = `📄 ${cleanDoi}`;
+                                    vDoi.appendChild(aTag);
+                                }
+                            });
+                            doiBox.style.display = 'block';
+                        } else {
+                            doiBox.style.display = 'none';
+                        }
+                    } else {
+                        doiBox.style.display = 'none';
+                    }
 
                     imageBox.innerHTML = '<span class="label">Fossil Photos & Captions</span>'; 
                     
@@ -276,6 +317,7 @@
 
         welcome.style.display = 'block';
         contentView.style.display = 'none';
+        doiBox.style.display = 'none'; // 필터 적용 시 DOI 영역 초기화
     }
 
     selStratum.addEventListener('change', applyFilters);
