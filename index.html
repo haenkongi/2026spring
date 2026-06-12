@@ -14,6 +14,7 @@
             --panel-bg: #ffffff;
             --accent: #c0392b;
             --text-dark: #2c3e50;
+            --naver-green: #03C75A; /* 네이버 고유 브랜드 컬러 추가 */
         }
 
         body {
@@ -58,6 +59,22 @@
         .value { font-size: 1rem; line-height: 1.5; font-weight: 600; }
         .description { font-size: 0.9rem; background: #f9f9f9; padding: 15px; border-radius: 6px; border: 1px solid #eee; line-height: 1.6; }
         
+        /* 네이버 지도 버튼 스타일 */
+        .naver-btn {
+            display: inline-block;
+            background-color: var(--naver-green);
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        .naver-btn:hover {
+            background-color: #029e47;
+        }
+
         /* DOI 링크 스타일 */
         .doi-link {
             display: inline-block;
@@ -148,7 +165,10 @@
     <div id="content-view">
         <div class="data-box">
             <span class="label">Location</span>
-            <div id="v-title" class="value">-</div>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 5px;">
+                <div id="v-title" class="value">-</div>
+                <a id="v-naver-link" href="#" target="_blank" class="naver-btn">Naver Map ↗</a>
+            </div>
         </div>
         <div class="data-box">
             <span class="label">Stratum / Period</span>
@@ -211,6 +231,7 @@
     const imageBox = document.getElementById('image-box');
     const doiBox = document.getElementById('doi-box');
     const vDoi = document.getElementById('v-doi');
+    const vNaverLink = document.getElementById('v-naver-link'); // 네이버 링크 엘리먼트 정의
     
     const selStratum = document.getElementById('f-stratum');
     const selPeriod = document.getElementById('f-period');
@@ -243,6 +264,15 @@
                     document.getElementById('v-fossils').innerText = item.fossils || "-";
                     document.getElementById('v-note').innerText = item.note || "-";
 
+                    // [추가] 마커 클릭 시 해당 화석 산지의 네이버 지도 파라미터 주입
+                    if (item.lat && item.lng) {
+                        const encodedTitle = encodeURIComponent(item.title);
+                        vNaverLink.href = `https://map.naver.com?lng=${item.lng}&lat=${item.lat}&title=${encodedTitle}`;
+                        vNaverLink.style.display = 'inline-block';
+                    } else {
+                        vNaverLink.style.display = 'none';
+                    }
+
                     imageBox.innerHTML = '<span class="label">Fossil Photos & Captions</span>'; 
                     
                     if (item.image && Array.isArray(item.image) && item.image.length > 0) {
@@ -267,7 +297,6 @@
                         imageBox.style.display = 'none';
                     }
 
-                    // DOI 렌더링 로직 (최종 결과물이 이미지 밑에 추가됨)
                     vDoi.innerHTML = ''; 
                     if (item.doi) {
                         const doiList = Array.isArray(item.doi) ? item.doi : [item.doi];
