@@ -58,14 +58,14 @@
         .value { font-size: 1rem; line-height: 1.5; font-weight: 600; }
         .description { font-size: 0.9rem; background: #f9f9f9; padding: 15px; border-radius: 6px; border: 1px solid #eee; line-height: 1.6; }
         
-        /* DOI 링크 스타일 정의 */
+        /* DOI 링크 스타일 */
         .doi-link {
             display: inline-block;
             color: var(--accent);
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 600;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             word-break: break-all;
         }
         .doi-link:hover {
@@ -162,14 +162,14 @@
             <span class="label">Academic Note</span>
             <div id="v-note" class="description">-</div>
         </div>
-        
-        <div class="data-box" id="doi-box" style="display: none;">
-            <span class="label">References (DOI)</span>
-            <div id="v-doi" class="value"></div>
-        </div>
 
         <div id="image-box">
             <span class="label">Fossil Photos & Captions</span>
+        </div>
+        
+        <div class="data-box" id="doi-box" style="display: none; margin-top: 30px; padding-top: 20px; border-top: 1px double #ddd;">
+            <span class="label">References (DOI)</span>
+            <div id="v-doi" class="value"></div>
         </div>
     </div>
 </aside>
@@ -243,30 +243,6 @@
                     document.getElementById('v-fossils').innerText = item.fossils || "-";
                     document.getElementById('v-note').innerText = item.note || "-";
 
-                    // [추가] DOI 데이터 렌더링 로직
-                    vDoi.innerHTML = ''; // 초기화
-                    if (item.doi) {
-                        const doiList = Array.isArray(item.doi) ? item.doi : [item.doi];
-                        if (doiList.length > 0) {
-                            doiList.forEach(doiStr => {
-                                const cleanDoi = doiStr.trim();
-                                if(cleanDoi) {
-                                    const aTag = document.createElement('a');
-                                    aTag.href = `https://doi.org/${cleanDoi}`;
-                                    aTag.target = '_blank';
-                                    aTag.className = 'doi-link';
-                                    aTag.innerText = `📄 ${cleanDoi}`;
-                                    vDoi.appendChild(aTag);
-                                }
-                            });
-                            doiBox.style.display = 'block';
-                        } else {
-                            doiBox.style.display = 'none';
-                        }
-                    } else {
-                        doiBox.style.display = 'none';
-                    }
-
                     imageBox.innerHTML = '<span class="label">Fossil Photos & Captions</span>'; 
                     
                     if (item.image && Array.isArray(item.image) && item.image.length > 0) {
@@ -289,6 +265,30 @@
                         imageBox.style.display = 'block';
                     } else {
                         imageBox.style.display = 'none';
+                    }
+
+                    // DOI 렌더링 로직 (최종 결과물이 이미지 밑에 추가됨)
+                    vDoi.innerHTML = ''; 
+                    if (item.doi) {
+                        const doiList = Array.isArray(item.doi) ? item.doi : [item.doi];
+                        if (doiList.length > 0) {
+                            doiList.forEach(doiStr => {
+                                const cleanDoi = doiStr.trim();
+                                if(cleanDoi) {
+                                    const aTag = document.createElement('a');
+                                    aTag.href = `https://doi.org/${cleanDoi}`;
+                                    aTag.target = '_blank';
+                                    aTag.className = 'doi-link';
+                                    aTag.innerText = `📄 ${cleanDoi}`;
+                                    vDoi.appendChild(aTag);
+                                }
+                            });
+                            doiBox.style.display = 'block';
+                        } else {
+                            doiBox.style.display = 'none';
+                        }
+                    } else {
+                        doiBox.style.display = 'none';
                     }
                 });
 
@@ -317,7 +317,7 @@
 
         welcome.style.display = 'block';
         contentView.style.display = 'none';
-        doiBox.style.display = 'none'; // 필터 적용 시 DOI 영역 초기화
+        doiBox.style.display = 'none'; 
     }
 
     selStratum.addEventListener('change', applyFilters);
