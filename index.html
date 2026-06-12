@@ -14,7 +14,8 @@
             --panel-bg: #ffffff;
             --accent: #c0392b;
             --text-dark: #2c3e50;
-            --naver-green: #03C75A; /* 네이버 고유 브랜드 컬러 추가 */
+            --naver-green: #03C75A;
+            --wiki-blue: #3366cc; /* 위키피디아 테마 컬러 */
         }
 
         body {
@@ -25,6 +26,7 @@
             background-color: var(--bg-color);
             color: var(--text-dark);
             overflow: hidden;
+            position: relative;
         }
 
         #side-panel {
@@ -59,7 +61,6 @@
         .value { font-size: 1rem; line-height: 1.5; font-weight: 600; }
         .description { font-size: 0.9rem; background: #f9f9f9; padding: 15px; border-radius: 6px; border: 1px solid #eee; line-height: 1.6; }
         
-        /* 네이버 지도 버튼 스타일 */
         .naver-btn {
             display: inline-block;
             background-color: var(--naver-green);
@@ -71,11 +72,8 @@
             border-radius: 4px;
             transition: background 0.2s;
         }
-        .naver-btn:hover {
-            background-color: #029e47;
-        }
+        .naver-btn:hover { background-color: #029e47; }
 
-        /* DOI 링크 스타일 */
         .doi-link {
             display: inline-block;
             color: var(--accent);
@@ -85,9 +83,7 @@
             margin-bottom: 6px;
             word-break: break-all;
         }
-        .doi-link:hover {
-            text-decoration: underline;
-        }
+        .doi-link:hover { text-decoration: underline; }
 
         #image-box { 
             display: none; 
@@ -117,6 +113,53 @@
 
         #map { flex: 1; height: 100%; cursor: default !important; }
         .welcome-msg { text-align: center; color: #bdc3c7; margin-top: 80px; font-size: 0.9rem; }
+
+        /* 우측 위키피디아 개요 패널 스타일 */
+        #wiki-panel {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            width: 320px;
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border: 1px solid rgba(51, 102, 204, 0.2);
+            padding: 20px;
+            z-index: 1050;
+            display: none; 
+            animation: fadeInRight 0.4s ease-out;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+        .wiki-header {
+            display: flex;
+            align-items: center;
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--wiki-blue);
+            margin-bottom: 12px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+        .wiki-header span { margin-right: 6px; font-size: 1.2rem; }
+        .wiki-fossil-name { font-size: 1.1rem; font-weight: 700; color: #2c3e50; margin-bottom: 8px; }
+        .wiki-content { font-size: 0.88rem; line-height: 1.6; color: #555; text-align: justify; }
+        
+        /* 위키피디아 출처 링크 스타일 */
+        .wiki-more-link {
+            display: block;
+            margin-top: 12px;
+            font-size: 0.8rem;
+            color: var(--wiki-blue);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .wiki-more-link:hover { text-decoration: underline; }
+
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
     </style>
 </head>
 <body>
@@ -194,6 +237,13 @@
     </div>
 </aside>
 
+<div id="wiki-panel">
+    <div class="wiki-header"><span>📚</span>Wikipedia Academic Overview</div>
+    <div id="wiki-target" class="wiki-fossil-name">-</div>
+    <div id="wiki-desc" class="wiki-content">Loading summary from Wikipedia...</div>
+    <a id="wiki-more" href="#" target="_blank" class="wiki-more-link">Read full Wikipedia article ↗</a>
+</div>
+
 <main id="map"></main>
 
 <script>
@@ -231,8 +281,14 @@
     const imageBox = document.getElementById('image-box');
     const doiBox = document.getElementById('doi-box');
     const vDoi = document.getElementById('v-doi');
-    const vNaverLink = document.getElementById('v-naver-link'); // 네이버 링크 엘리먼트 정의
+    const vNaverLink = document.getElementById('v-naver-link');
     
+    // 위키피디아 패널 엘리먼트 제어
+    const wikiPanel = document.getElementById('wiki-panel');
+    const wikiTarget = document.getElementById('wiki-target');
+    const wikiDesc = document.getElementById('wiki-desc');
+    const wikiMore = document.getElementById('wiki-more');
+
     const selStratum = document.getElementById('f-stratum');
     const selPeriod = document.getElementById('f-period');
     const selFossil = document.getElementById('f-fossil');
@@ -264,13 +320,56 @@
                     document.getElementById('v-fossils').innerText = item.fossils || "-";
                     document.getElementById('v-note').innerText = item.note || "-";
 
-                    // [추가] 마커 클릭 시 해당 화석 산지의 네이버 지도 파라미터 주입
                     if (item.lat && item.lng) {
                         const encodedTitle = encodeURIComponent(item.title);
                         vNaverLink.href = `https://map.naver.com?lng=${item.lng}&lat=${item.lat}&title=${encodedTitle}`;
                         vNaverLink.style.display = 'inline-block';
                     } else {
                         vNaverLink.style.display = 'none';
+                    }
+
+                    // [수정] 위키피디아 실시간 API 호출 로직
+                    const fossilText = (item.fossils || "").toLowerCase();
+                    let wikiKeyword = "";
+
+                    // 복잡한 텍스트에서 위키피디아 검색용 핵심 키워드 정제추출
+                    if (fossilText.includes("conodont")) wikiKeyword = "Conodont";
+                    else if (fossilText.includes("stromatoporoid")) wikiKeyword = "Stromatoporoid";
+                    else if (fossilText.includes("sponge")) wikiKeyword = "Sponge";
+                    else if (fossilText.includes("stromatolite")) wikiKeyword = "Stromatolite";
+                    else if (fossilText.includes("thrombolite")) wikiKeyword = "Thrombolite";
+                    else if (fossilText.includes("trilobite")) wikiKeyword = "Trilobite";
+
+                    if (wikiKeyword) {
+                        wikiTarget.innerText = wikiKeyword;
+                        wikiDesc.innerText = "Loading summary from Wikipedia...";
+                        wikiPanel.style.display = 'block';
+
+                        // 영문 위키피디아 공식 REST API 단락 요약 엔드포인트 호출
+                        const wikiApiUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(wikiKeyword)}`;
+                        
+                        fetch(wikiApiUrl)
+                            .then(response => {
+                                if (!response.ok) throw new Error("Wikipedia page not found");
+                                return response.json();
+                            })
+                            .then(wikiData => {
+                                // 요약 내용(HTML 혹은 일반 텍스트) 반영
+                                wikiDesc.innerHTML = wikiData.extract_html || wikiData.extract;
+                                // 원문 링크 버튼 연결
+                                wikiMore.href = wikiData.content_urls.desktop.page;
+                                wikiMore.style.display = 'block';
+                            })
+                            .catch(err => {
+                                wikiDesc.innerText = "Failed to load academic description from Wikipedia.";
+                                wikiMore.style.display = 'none';
+                            });
+                    } else {
+                        // 키워드가 매칭되지 않는 특별 화석종일 때의 기본 레이아웃 예외처리
+                        wikiTarget.innerText = item.fossils || "Paleozoic Fossil Component";
+                        wikiDesc.innerHTML = "This is a distinctive Paleozoic fossil dynamic component discovered in the Taebaeksan Basin sequence.";
+                        wikiMore.style.display = 'none';
+                        wikiPanel.style.display = 'block';
                     }
 
                     imageBox.innerHTML = '<span class="label">Fossil Photos & Captions</span>'; 
@@ -347,6 +446,7 @@
         welcome.style.display = 'block';
         contentView.style.display = 'none';
         doiBox.style.display = 'none'; 
+        wikiPanel.style.display = 'none'; // 필터 적용 시 우측 위키피디아 패널 초기화 숨김
     }
 
     selStratum.addEventListener('change', applyFilters);
