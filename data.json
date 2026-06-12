@@ -200,5 +200,45 @@
         "doi":[
             "10.1016\/j.palaeo.2021.110409"
         ]
+    },
+    {
+        "title":"Namgyo, Yeongwol",
+        "lat":37.255917,
+        "lng":128.429689,
+        "stratum":"Yeongheung Formation",
+        "period":"Middle Ordovician",
+        "fossils":"Stromatoporoid(Labechiid) reef complex",
+        "note":null,
+        "image":[
+            {
+                "path":"images\/Jeon_et_al_2017_1.png",
+                "caption":"(a) Transverse section of NHCG 10921 from stromatoporoid-bearing unit of S14."
+            },
+            {
+                "path":"images\/Jeon_et_al_2017_2.png",
+                "caption":"Vertical section of NHCG 10920 from S14."
+            }
+        ],
+        "doi":[
+            "10.1007\/s12303-016-0055-4"
+        ]
+    },
+    {
+        "title":"Seokgaejae, Taebaek",
+        "lat":37.088689,
+        "lng":129.142022,
+        "stratum":"Hwajeol Formation",
+        "period":"Late Cambrian",
+        "fossils":"Dendrolite reef",
+        "note":null,
+        "image":[
+            {
+                "path":"images\/Lee_et_al_2016_1.png",
+                "caption":"(b) slab of dendrolite. Dendrolite develops on limestone conglomerate. Note characteristic dendritic, upward-widening clots"
+            }
+        ],
+        "doi":[
+            "10.1111\/1755-6724.12659"
+        ]
     }
 ]
