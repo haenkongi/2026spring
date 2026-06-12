@@ -7,12 +7,14 @@
         "period":"Late Ordovician(Sandbian)",
         "fossils":"Conodont",
         "note":null,
-        "doi": ["10.1016/j.jseaes.2024.104169"],
         "image":[
             {
-                "path":"images/Lee_et_al_2025_1.png",
-                "caption":"Fig. 4 Darriwilian and Sandbian conodonts. (a–c) Plectodina sp. cf. P. florida Sweet, 1979... (Park et al., 2025)"
+                "path":"images\/Lee_et_al_2025_1.png",
+                "caption":"Fig. 4 Darriwilian and Sandbian conodonts. (a–c) Plectodina sp. cf. P.\nflorida Sweet, 1979; (a) Sc element, lateral view, WC3, JBNU25-25;\n(b) Sb element, lateral view, WC3, JBNU25-26; (c) Sc element, lateral\nview, WC3, JBNU25-29. (d, e) Plectodina onychodonta An and Xu\nin An et al., 1983. (d) Sa element, posterior view, WC3, JBNU25-27;\n(e) M element, lateral view, WC3, JBNU25-28. (f–i) Microcoelodus\nasymmetricus (Branson & Mehl, 1933); (f) symmetrical S element,\nposterolateral view, EC2, JBNU25-01; (g) symmetrical S element,\nposterior view, YS2-13, JBNU25-02; (h) asymmetrical S element,\nposterior view, EC2, JBNU25-05; (i) asymmetrical S element, poste-\nrior view, EC2, JBNU25-06. (j–n) Tasmanognathus sishuiensis Zhang\nin An et al., 1983; (j) Sa element, posterior view, EC2, JBNU25-07;\n(k) Pa element, lateral view, EC2, JBNU25-08; (l) Pa element, lat-\neral view, YS2-13, JBNU25-09; (m) Sc element, lateral view, EC2,\nJBNU25-10; (n) Pb element, lateral view, EC2, JBNU25-12. (o)\nErismodus typus Branson & Mehl, 1933; Pa element, posterior view,\nEC2, JBNU25-13. (p, q) Tasmanognathus careyi Burrett, 1979; (p)\nSa element, posterior view, EC2, JBNU25-16; (q) Sb element, pos-\nterior view, EC2, JBNU25-17. (r) Acontiodus viriosus Cui in An et\nal., 1983; posterior view, EC2, JBNU25-31. (s, t) Panderodus gracilis\n(Branson & Mehl, 1933); (s) P element, inner-lateral view, YS2-13,\nJBNU25-32; (t) P element, inner-lateral view, EC2, JBNU25-33. (u,\nv) Plectodina aculeata (Stauffer, 1935); (u) Pb element, lateral view,\nEC2, JBNU25-21; (v) S element, posterior view, EC2, JBNU25-22.\n(w) Protopanderodus nogamii (Lee, 1975); Sb element, lateral view,\nWC3, JBNU25-35. (x) Erismodus quadridactylus (Stauffer, 1935); S\nelement, lateral view, EC2, JBNU25-24. Scale bars\n=\n100 μm (Park et al., 2025)"
             }
+        ],
+        "doi":[
+
         ]
     },
     {
@@ -23,12 +25,14 @@
         "period":"late Middle Ordovician",
         "fossils":"Stromatoporoid(Labechiid) reef complex",
         "note":null,
-        "doi": ["10.1016/j.palaeo.2018.05.012"],
         "image":[
             {
-                "path":"images/Hong_et_al_2018_1.png",
-                "caption":"Fig. 5. A) Thin sections of the columnar to extended bulbous reef frameworks used for constituent analysis... (Hong et al., 2018)"
+                "path":"images\/Hong_et_al_2018_1.png",
+                "caption":"Fig. 5. A) Thin sections of the columnar to ex- tended bulbous reef frameworks used for con- stituent analysis (Table 1). B) Tracing of the reef frameworks made up of laminar reef elements such as stromatoporoids and bryozoans, enclosed by micritic sediments. (Hong et al., 2018)"
             }
+        ],
+        "doi":[
+            "10.1016\/j.palaeo.2017.12.018"
         ]
     },
     {
@@ -39,12 +43,14 @@
         "period":"late Middle Ordovician",
         "fossils":"Stromatoporoid(Labechiid) reef complex",
         "note":null,
-        "doi": ["10.1016/j.palaeo.2017.02.015"],
         "image":[
             {
-                "path":"images/Hong_et_al_2017_1.png",
-                "caption":"Fig. 2. A) Outcrop of the uppermost stromatoporoid reef... (Hong et al., 2017)"
+                "path":"images\/Hong_et_al_2017_1.png",
+                "caption":"Fig. 2. A) Outcrop of the uppermost stromatoporoid reef of the studied interval. B) Photograph of a set of thin sections showing domal stromatoporoid reef from the second reef horizon, overlying and overlain by peloidal–intraclastic packstone to grainstone (P\/G). Note light-colored laminar stromatoporoids (arrows) bounded by darker micrite. The sample locations are marked in Fig. 1D. (Hong et al., 2017)"
             }
+        ],
+        "doi":[
+            "10.1016\/j.palaeo.2017.01.017"
         ]
     },
     {
@@ -55,12 +61,14 @@
         "period":"Late Ordovician(Sandbian)",
         "fossils":"Conodont",
         "note":null,
-        "doi": ["10.1016/j.jseaes.2024.104169"],
         "image":[
             {
-                "path":"images/Lee_et_al_2025_1.png",
-                "caption":"Fig. 4 Darriwilian and Sandbian conodonts... (Lee et al., 2025)"
+                "path":"images\/Lee_et_al_2025_1.png",
+                "caption":"Fig. 4 Darriwilian and Sandbian conodonts. (a–c) Plectodina sp. cf. P.\nflorida Sweet, 1979; (a) Sc element, lateral view, WC3, JBNU25-25;\n(b) Sb element, lateral view, WC3, JBNU25-26; (c) Sc element, lateral\nview, WC3, JBNU25-29. (d, e) Plectodina onychodonta An and Xu\nin An et al., 1983. (d) Sa element, posterior view, WC3, JBNU25-27;\n(e) M element, lateral view, WC3, JBNU25-28. (f–i) Microcoelodus\nasymmetricus (Branson & Mehl, 1933); (f) symmetrical S element,\nposterolateral view, EC2, JBNU25-01; (g) symmetrical S element,\nposterior view, YS2-13, JBNU25-02; (h) asymmetrical S element,\nposterior view, EC2, JBNU25-05; (i) asymmetrical S element, poste-\nrior view, EC2, JBNU25-06. (j–n) Tasmanognathus sishuiensis Zhang\nin An et al., 1983; (j) Sa element, posterior view, EC2, JBNU25-07;\n(k) Pa element, lateral view, EC2, JBNU25-08; (l) Pa element, lat-\neral view, YS2-13, JBNU25-09; (m) Sc element, lateral view, EC2,\nJBNU25-10; (n) Pb element, lateral view, EC2, JBNU25-12. (o)\nErismodus typus Branson & Mehl, 1933; Pa element, posterior view,\nEC2, JBNU25-13. (p, q) Tasmanognathus careyi Burrett, 1979; (p)\nSa element, posterior view, EC2, JBNU25-16; (q) Sb element, pos-\nterior view, EC2, JBNU25-17. (r) Acontiodus viriosus Cui in An et\nal., 1983; posterior view, EC2, JBNU25-31. (s, t) Panderodus gracilis\n(Branson & Mehl, 1933); (s) P element, inner-lateral view, YS2-13,\nJBNU25-32; (t) P element, inner-lateral view, EC2, JBNU25-33. (u,\nv) Plectodina aculeata (Stauffer, 1935); (u) Pb element, lateral view,\nEC2, JBNU25-21; (v) S element, posterior view, EC2, JBNU25-22.\n(w) Protopanderodus nogamii (Lee, 1975); Sb element, lateral view,\nWC3, JBNU25-35. (x) Erismodus quadridactylus (Stauffer, 1935); S\nelement, lateral view, EC2, JBNU25-24. Scale bars\n=\n100 μm (Lee et al., 2025)"
             }
+        ],
+        "doi":[
+            "10.1007\/s12303-025-00077-6"
         ]
     },
     {
@@ -71,24 +79,26 @@
         "period":"Middle Cambrian",
         "fossils":"Microbial - sponge reef",
         "note":null,
-        "doi": ["10.14770/jgsk.2022.58.2.137"],
         "image":[
             {
-                "path":"images/Lee_et_al_2022_4.png",
-                "caption":"Outcrop photograph of the Daegi Formation in the study area... (Lee et al., 2022)"
+                "path":"images\/Lee_et_al_2022_4.png",
+                "caption":"Outcrop photograph of the Daegi Formation in the study area. Note that curved and convex-up bedding (dashed lines) is easily recognized. An arrow indicates stratigraphic way-up direction. (Lee et al., 2022)"
             },
             {
-                "path":"images/Lee_et_al_2022_1.png",
-                "caption":"Fig. 4. Slab photographs of the Daegi reefs... (Lee et al., 2022)"
+                "path":"images\/Lee_et_al_2022_1.png",
+                "caption":"Fig. 4. Slab photographs of the Daegi reefs. a-b) Thromboid-sponge bioherms showing millimeter-scale darker mesoclots (arrows) and the surrounding lighter micritic sediments. These mesoclots are coalesced vertically and laterally. c) Microbial crust bioherm composed predominantly of whitish, platy to arcuate crusts (arrows). (Lee et al., 2022)"
             },
             {
-                "path":"images/Lee_et_al_2022_2.png",
-                "caption":"c) Enlargement of a rectangle in Figure 5b showing bifurcation of Epiphyton filaments... (Lee et al., 2022)"
+                "path":"images\/Lee_et_al_2022_2.png",
+                "caption":"c) Enlargement of a rectangle in Figure 5b showing bifurcation of Epiphyton filaments (white arrow). (Lee et al., 2022)"
             },
             {
-                "path":"images/Lee_et_al_2022_3.png",
-                "caption":"e) Lithistid sponge skeleton (line) composed largely of straight-form spicules... (Lee et al., 2022)"
+                "path":"images\/Lee_et_al_2022_3.png",
+                "caption":"e) Lithistid sponge skeleton (line) composed largely of straight-form spicules. Note the rectangle and its inset showing enlarged desma (red lines and arrow). (Lee et al., 2022)"
             }
+        ],
+        "doi":[
+            "10.14770\/jgsk.2022.58.2.137"
         ]
     },
     {
@@ -99,24 +109,26 @@
         "period":"Early Ordovician",
         "fossils":"Lithistid sponge (Archaeoscyphia) - microbial - calathid (receptaculitid) reef",
         "note":null,
-        "doi": ["10.1016/j.palaeo.2015.03.022", "10.1111/let.12035"],
         "image":[
             {
-                "path":"images/Hong_et_al_2015_1.png",
-                "caption":"Photograph and interpretive tracing of a transverse cut thin section... (Hong et al., 2015)"
+                "path":"images\/Hong_et_al_2015_1.png",
+                "caption":"Photograph and interpretive tracing of a transverse cut thin section showing siliceous sponge-dom- inant (upper right) boundstone, in which closely spaced Archaeoscyphia and mutually attached sponge frameworks are bound by peloidal micritic crusts. (Hong et al., 2015)"
             },
             {
-                "path":"images/Hong_et_al_2015_2.png",
-                "caption":"Photomicrograph of Archaeoscyphia... (Hong et al., 2015)"
+                "path":"images\/Hong_et_al_2015_2.png",
+                "caption":"Photomicrograph of Archaeoscyphia, with its characteristic well-organized lattice-like arrangement of spicules.(Hong et al., 2015)"
             },
             {
-                "path":"images/Choh_et_al_2013_3.png",
-                "caption":"Photograph of SJ sponge-microbial-calathid reefs (SMCr)... (Choh et al., 2013)"
+                "path":"images\/Choh_et_al_2013_3.png",
+                "caption":"Photograph of SJ sponge-microbial-calathid reefs (SMCr) at the Seokgaejae area where the upper three of five reef-bearing intervals are exposed along a forest service road. (Choh et al., 2013)"
             },
             {
-                "path":"images/Choh_et_al_2013_6.png",
-                "caption":"Goblet- shape calathid (Rc; left) and Archaeoscyphia (Ls)... (Choh et al., 2013)"
+                "path":"images\/Choh_et_al_2013_6.png",
+                "caption":"Goblet- shape calathid (Rc; left) and Archaeoscyphia (Ls) with donut-shaped transverse cut (white arrow) in the Seokgaejae patch reef. Note the holdfast of the calathid (Rch) which appears to be attached (black arrow) to another Archaeoscyphia. (Choh et al., 2013)"
             }
+        ],
+        "doi":[
+
         ]
     },
     {
@@ -127,16 +139,18 @@
         "period":"Early Ordovician",
         "fossils":"Lithistid sponge-microbial reef, Thrombolite",
         "note":null,
-        "doi": ["10.1111/let.12035"],
         "image":[
             {
-                "path":"images/Choh_et_al_2013_1.png",
-                "caption":"Detailed photograph of rectangle in Figure 2a... (Choh et al., 2013)"
+                "path":"images\/Choh_et_al_2013_1.png",
+                "caption":"Detailed photograph of rectangle in Figure 2a showing transverse cut of cone-shaped Archaeoscyphia (Ar; arrows and their sketches). Note the occurrence of many such round-shaped fossils which are mostly lithistid sponges. (Choh et al., 2013)"
             },
             {
-                "path":"images/Choh_et_al_2013_2.png",
-                "caption":"Microbial clots (Mc; arrows) and rare lithistid Archaeoscyphia... (Choh et al., 2013)"
+                "path":"images\/Choh_et_al_2013_2.png",
+                "caption":"Microbial clots (Mc; arrows) and rare lithistid Archaeoscyphia (Ls) of the Gumunso G3 thrombolitic reef.(Choh et al., 2013)"
             }
+        ],
+        "doi":[
+
         ]
     },
     {
@@ -147,16 +161,18 @@
         "period":"Early Ordovician",
         "fossils":"sponge-microbial reef ",
         "note":null,
-        "doi": ["10.1111/let.12035"],
         "image":[
             {
-                "path":"images/Choh_et_al_2013_4.png",
-                "caption":"Photograph of S1 sponge-microbial reef (SMr) at the Sangdong... (Choh et al., 2013)"
+                "path":"images\/Choh_et_al_2013_4.png",
+                "caption":"Photograph of S1 sponge-microbial reef (SMr) at the Sangdong. Note patches of partially dolomitized burrow (arrows). (Choh et al., 2013)"
             },
             {
-                "path":"images/Choh_et_al_2013_5.png",
-                "caption":"Well-preserved Archaeoscyphia sponge (Ls) of the Sangdong S1 patch reef... (Choh et al., 2013)"
+                "path":"images\/Choh_et_al_2013_5.png",
+                "caption":"Well-preserved Archaeoscyphia sponge (Ls) of the Sangdong S1 patch reef. (Choh et al., 2013)"
             }
+        ],
+        "doi":[
+
         ]
     },
     {
@@ -167,20 +183,22 @@
         "period":"Early Ordovician (Tremadocian)",
         "fossils":"Stromatolite, thrombolite (Keratose sponge-microbial consortia) reef",
         "note":null,
-        "doi": ["10.1016/j.palaeo.2021.110409"],
         "image":[
             {
-                "path":"images/Pham_et_al_2021_1.png",
-                "caption":"Outcrop view of stromatolite-like columns... (Pham et al., 2021)."
+                "path":"images\/Pham_et_al_2021_1.png",
+                "caption":"Outcrop view of stromatolite-like columns.\nScale in centimetres (Pham et al., 2021)."
             },
             {
-                "path":"images/Pham_et_al_2021_2.png",
-                "caption":"Lateral gradational change from a dense to loose keratolite network... (Pham et al., 2021)"
+                "path":"images\/Pham_et_al_2021_2.png",
+                "caption":"Lateral gradational change from a dense to loose keratolite network. (Pham et al., 2021)"
             },
             {
-                "path":"images/Pham_et_al_2021_3.png",
-                "caption":"Photographs of (A) a polished slab and (B) corresponding thin sections... (Pham et al., 2021)"
+                "path":"images\/Pham_et_al_2021_3.png",
+                "caption":"Photographs of (A) a polished slab and (B) corresponding thin sections of the thrombolite-like mounds. Irregular to bulbous keratose–microbial clots (red dashed lines) and lithistid–microstromatolite clots (yellow dashed lines) are surrounded by ribbon rocks composed of alternating lime mudstone and shale beds."
             }
+        ],
+        "doi":[
+
         ]
     }
 ]
